@@ -1,0 +1,61 @@
+.container_products{
+    width: 100%;
+    height: 700px;
+    background-color: var(--heindall_cleancolor);
+}
+
+.container_t{
+    text-align: center;
+}
+
+.title_products{
+    top: 50px;       
+    display: inline-block;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: bold;
+    transition: all 1s ease;
+    border-bottom: 2px solid var(--heindall_subcolor);
+    color: var(--heindall_subcolor);
+    position: relative;  
+}
+
+.products_wrapper {
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.product_card {
+    border: 2px solid black;
+    padding: 20px;
+    width: 300px;
+    box-sizing: border-box;
+}
+
+.product_title {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.product_logo{
+    width: 100%;
+    height: 300px;
+    align-items: center;
+    background-color: var(--background);    
+}
+
+.product_img{
+    width: 100%;
+    height: 300px;    
+    object-fit: contain;
+}
+
+.product_description {
+    margin-top: 20px;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 10px;
+}

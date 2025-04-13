@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   sodipodi:docname="bifrost.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#0d0d0d"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.98528337"
+     inkscape:cx="311.07802"
+     inkscape:cy="640.93237"
+     inkscape:window-width="1366"
+     inkscape:window-height="697"
+     inkscape:window-x="252"
+     inkscape:window-y="1072"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient13"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#361ae6;stop-opacity:1;"
+         offset="0.285"
+         id="stop13" />
+      <stop
+         style="stop-color:#6846ec;stop-opacity:1;"
+         offset="0.74832588"
+         id="stop15" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient13"
+       id="linearGradient14"
+       x1="62.868885"
+       y1="124.00541"
+       x2="85.241531"
+       y2="185.81738"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.2231918,0,0,0.2231918,46.398075,142.47091)" />
+  </defs>
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline">
+    <rect
+       style="fill:#361ae6;fill-opacity:1;stroke:#000000;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round"
+       id="rect1"
+       width="12.912051"
+       height="12.912051"
+       x="123.04427"
+       y="118.00271" />
+    <rect
+       style="fill:#6846ec;fill-opacity:1;stroke:#000000;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round"
+       id="rect2"
+       width="12.912051"
+       height="12.912051"
+       x="123.04427"
+       y="132.81358" />
+    <rect
+       style="fill:#9a73f3;fill-opacity:1;stroke:#000000;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round"
+       id="rect3"
+       width="12.912051"
+       height="12.912051"
+       x="123.04427"
+       y="147.62447" />
+    <rect
+       style="fill:#cd9ff9;fill-opacity:1;stroke:#000000;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round"
+       id="rect4"
+       width="12.912051"
+       height="12.912051"
+       x="123.04427"
+       y="162.43535" />
+    <rect
+       style="fill:#ffccff;fill-opacity:1;stroke:#000000;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round"
+       id="rect5"
+       width="12.912051"
+       height="12.912051"
+       x="123.04427"
+       y="177.24623" />
+    <g
+       id="g6"
+       transform="translate(15.345837)">
+      <path
+         style="fill:#f2f2f2;fill-opacity:1;stroke:#f2f2f2;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+         d="m 76.560344,167.53243 8.44851,-7.50286 c 28.156736,11.03694 4.26737,25.43811 -19.073905,33.09172 -4.763014,-23.30333 3.335442,-46.25946 -19.209814,-61.94182 l 31.687159,-13.42676 c 4.40132,14.88032 1.50119,33.817 -6.981916,55.85533 7.093426,-1.17163 12.395556,5.12004 13.497736,-4.46897 z"
+         id="path5"
+         sodipodi:nodetypes="cccccccc"
+         inkscape:export-filename="bifrost_logo.svg"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="fill:#cccccc;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+         d="m 84.928104,169.13907 -8.36776,-1.60664 8.44851,-7.50286"
+         id="path6"
+         sodipodi:nodetypes="ccc"
+         inkscape:export-filename="path2.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+    </g>
+    <rect
+       style="fill:#00ff00;fill-opacity:0;stroke:none;stroke-width:0.499998;stroke-linecap:round;stroke-linejoin:round"
+       id="rect6"
+       width="16.933332"
+       height="16.933332"
+       x="34.178963"
+       y="170.22057"
+       inkscape:export-filename="bifrost-logo.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       id="g9"
+       transform="matrix(1.0000054,0,0,1.0000054,-19.878308,1.5230889)">
+      <path
+         id="path8"
+         style="fill:url(#linearGradient14);stroke:none;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+         d="M 78.315016,117.52379 46.62748,130.94805 a 0.250025,0.250025 0 0 0 -0.04399,0.43528 c 11.214165,7.80051 14.783698,17.36504 16.167914,27.94134 1.384216,10.57631 0.547848,22.15305 2.938147,33.84773 a 0.250025,0.250025 0 0 0 0.32183,0.18754 c 11.690755,-3.8334 23.516722,-9.33359 28.957768,-15.34829 1.360262,-1.50367 2.324349,-3.0454 2.773759,-4.61212 0.44941,-1.56673 0.376519,-3.16097 -0.324145,-4.72327 -1.401328,-3.12461 -5.249962,-6.10891 -12.317528,-8.87927 a 0.250025,0.250025 0 0 0 -0.259317,0.0463 l -8.446305,7.50165 a 0.250025,0.250025 0 0 0 0.118082,0.43297 l 8.119844,1.56053 c -0.281699,2.19922 -0.788001,3.52166 -1.458655,4.20463 -0.698526,0.71136 -1.584399,0.84919 -2.725137,0.73859 -2.195813,-0.21289 -5.209839,-1.38594 -8.666261,-0.94234 8.383769,-21.90737 11.270927,-40.77765 6.869569,-55.6581 a 0.250025,0.250025 0 0 0 -0.338037,-0.15744 z" />
+      <path
+         style="fill:#4f2ae9;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+         d="m 84.928104,169.13907 -8.36776,-1.60664 8.44851,-7.50286"
+         id="path9"
+         sodipodi:nodetypes="ccc"
+         inkscape:export-filename="path2.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+    </g>
+  </g>
+</svg>
