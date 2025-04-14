@@ -57,10 +57,10 @@ function login() {
                 errorMsg.textContent = (currentUser + " não localizado.");
                 errorMsg.style.display = "block";
                 return;
-            }
+            }            
 
-            if (user.senha?.toString().trim() === senha) {
-                alert(`Logando como ${user.nome || user.user || user.email}...`);
+            if (user.acess_key.toString().trim() === senha.toString().trim()) {
+                alert(`Logando como ${user.user || user.email}...`);
             } else {
                 errorMsg.textContent = "Senha incorreta.";
                 errorMsg.style.display = "block";
