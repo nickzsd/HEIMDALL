@@ -1,0 +1,191 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    transition: 0.7s;
+}
+
+button:hover{
+    transform: scale(0.9);
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    position: relative;
+    z-index: 1;
+}
+
+#backgroundCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#eyeCanvas {
+    position: absolute;
+    top: 62%;
+    right: 9px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.senha_container {
+    position: relative;
+}
+
+.senha_container input {
+    width: 100%;
+    padding-right: 50px; 
+}  
+
+.icon_container {
+    position: relative;
+    width: 50px; 
+    height: 50px; 
+}
+
+.inside {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: opacity 0.5s ease; 
+}
+
+.icon_hover {
+    opacity: 0;
+}
+
+.icon_container:hover .icon_hover {
+    opacity: 1;  
+}
+
+.icon_container:hover .inside {
+    opacity: 1; 
+}
+
+.login_container {
+    position: relative;
+    width: 460px;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 30px;
+    padding: 40px;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 40px rgba(218,165,32, 0.7);
+    transition: box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.login_container::before {
+    content: '';
+    background-image: url('../icons/Heindall/heindall_black.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100px;
+    opacity: 0.1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.title {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 20px;
+}
+
+.client{    
+    text-align: center;
+}
+
+.login-type {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    position: relative;
+}
+
+#userType.cliente {
+    color: blue;
+}
+
+#userType.funcionario {
+    color: brown;
+}
+
+.page_corner {
+    position: absolute; 
+    top: 10px;
+    right: 10px; 
+    background: #eee;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.page_corner:hover {
+    background: #ccc;
+}
+
+.arrow {
+    font-size: 18px;
+    color: #333;
+}
+
+.inferior_line {
+    display: flex;    
+    margin: 15px 0 20px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    display: none;
+}
+
+.get_back {        
+    text-decoration: none;
+    color: #00aaff;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;     
+    z-index: 2;
+}
+
+.get_back:hover {
+    text-decoration: underline;
+    color: #0cffeb;
+}
+

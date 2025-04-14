@@ -19,3 +19,4 @@ document.querySelectorAll('.product_logo').forEach((logo) => {
         }
     });
 });
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Portal Heimdall</title>
+    <link rel="icon" type="image/png" href="../icons/Heindall/heindall_gold.png">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <link rel = "stylesheet" href = "../styles/loginscreen.css" type = "text/css" media = "screen"/> 
+    <script type="module" src="../javascript/loginfunctions.js"></script>    
+</head>
+<body>
+    <canvas id="backgroundCanvas"></canvas>
+
+    <div class="login_container" id="loginContainer">
+        <div class="icon_container">
+            <img class="inside" src="../icons/Heindall/heindall_black.png" alt="company icon">
+            <img class="inside icon_hover" src="../icons/Heindall/heindall_gold.png" alt="company icon">
+        </div>        
+
+        <h1 class="title">Portal Heimdall</h1>
+        <div class="login_type">
+            <span>Login para <span id="userType" class="client">Cliente</span></span>
+            <div class="page_corner">
+                <span class="arrow">⇄</span>
+            </div>
+        </div>
+
+        <input type="text" placeholder="user/email" id="email">
+        <div class="senha_container">
+            <input type="password" placeholder="senha" id="senha">
+            <canvas id="eyeCanvas" width="40" height="40"></canvas>
+        </div>
+
+        <div class="inferior_line">
+            <span class="error" id="errorMsg"></span>
+            <a href="#" class="get_back">esqueceu a senha</a>
+        </div>
+
+        <button>entrar</button>
+    </div>
+</body>

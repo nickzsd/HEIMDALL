@@ -1,7 +1,7 @@
 const modal = document.getElementById("contactModal");
 const closeBtn = document.getElementById("closeContactModal");
 
-document.querySelectorAll(".btn_contact, .btn_bt, .btn_ph, .contact").forEach(btn => {    
+document.querySelectorAll(".btn_contact, .btn_bt, .contact").forEach(btn => {    
     btn.addEventListener("click", function(e) {
         e.preventDefault();
 
