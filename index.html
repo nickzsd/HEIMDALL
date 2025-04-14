@@ -10,13 +10,15 @@
     <link rel = "stylesheet" href = "styles/about.css" type = "text/css" media = "screen"/>     
     <link rel = "stylesheet" href = "styles/products.css" type = "text/css" media = "screen"/>     
     <link rel = "stylesheet" href = "styles/service.css" type = "text/css" media = "screen"/>     
-    <script type="module" src="javascript/headerFunctions.js"></script>  
-    <script src="javascript/aboutFunctions.js"></script>  
+    <link rel = "stylesheet" href = "styles/contact.css" type = "text/css" media = "screen"/>     
+    <script type="module" src="javascript/headerFunctions.js"></script>      
     <script type="module" src="javascript/products.js"></script>  
+    <script type="module" src="javascript/contact.js"></script>  
+    <script src="javascript/aboutFunctions.js"></script>  
 </head>
 <body>
 
-<header>
+<header class="fixed">
     <div class="logo">
         <img class = "company_header_logo" src="icons/Heindall/heindall_gold.png" alt="Company_Logo">
     </div>
@@ -26,12 +28,12 @@
 
 <div class="dropdown_menu" id="dropdownMenu">
     <ul>
-        <li>- TRABALHE CONOSCO</li>
-        <li>- QUEM SOMOS</li>
-        <li>- NOSSOS PRODUTOS</li>
-        <li>- ENTRAR EM CONTATO</li>
-        <li>- SUPORTE / AJUDA</li>
-        <li>- PLATAFORMA DE SERVIÇOS</li>
+        <li><a class="menu_link contact">- TRABALHE CONOSCO</a></li>
+        <li><a href="#company_info"  class="menu_link">- QUEM SOMOS</a></li>
+        <li><a href="#products_info" class="menu_link">- NOSSOS PRODUTOS</a></li>
+        <li><a href="#service_info"  class="menu_link">- NOSSOS SERVIÇOS</a></li>
+        <li><a class="menu_link contact">- ENTRAR EM CONTATO</a></li>
+        <li><a class="menu_link">- PLATAFORMA DE SERVIÇOS</a></li>
     </ul>
 </div>
 
@@ -48,62 +50,64 @@
     </div>
 </div>
 
-<div class="container_about">
-    <h1  id="t_text" class="title hidden">SOBRE NÓS:</h1>
-    <div id="b_text" class="box text1 hidden"></div>
-    <div id="m_text" class="box text2 hidden"></div>
-</div>
+<section id="company_info">
+    <div class="container_about">
+        <h1  id="t_text" class="title hidden">SOBRE NÓS:</h1>
+        <div id="b_text" class="box text1 hidden"></div>
+        <div id="m_text" class="box text2 hidden"></div>
+    </div>
+</section>
 
-<div class="container_products">    
-    <div class="products_wrapper">
-        <div class="product_card bifrost heimdall">
-            <div class="container_t">
-                <h2 class="product_title BT">BIFROST</h2>                
-            </div>            
-            <div class="product_logo">
-                <img class="product_img" src="icons/Bifrost/purple_bifrost_logo.png" alt="Logo Bifrost">
-            </div>
-            <div class="product_modal">
-                <div class="product_modal_content">
-                    <span class="close_modal">&times;</span>
-                    <h2 class="BT">BIFROST</h2>
-                    <p class="modal_text">Bifrost é uma poderosa plataforma de monitoramento de servidores, desenvolvida para oferecer total visibilidade sobre o desempenho da sua infraestrutura. Com monitoramento em tempo real de CPU, memória RAM e discos, o Bifrost antecipa falhas e gargalos antes que eles afetem seu negócio.
-                        Além disso, conta com uma interface gráfica intuitiva que facilita o gerenciamento de erros, contêineres Docker e processos, transformando dados brutos em insights acionáveis.
-                    </p>
-                    <button class="modal_btn btn_bt">Entrar em Contato</button>
+<section id="products_info">
+    <div class="container_products">    
+        <div class="products_wrapper">
+            <div class="product_card bifrost heimdall">
+                <div class="container_t">
+                    <h2 class="product_title BT">BIFROST</h2>                
+                </div>            
+                <div class="product_logo">
+                    <img class="product_img" src="icons/Bifrost/purple_bifrost_logo.png" alt="Logo Bifrost">
+                </div>
+                <div class="product_modal">
+                    <div class="product_modal_content">
+                        <span class="close_modal">&times;</span>
+                        <h2 class="BT">BIFROST</h2>
+                        <p class="modal_text">Bifrost é uma poderosa plataforma de monitoramento de servidores, desenvolvida para oferecer total visibilidade sobre o desempenho da sua infraestrutura. Com monitoramento em tempo real de CPU, memória RAM e discos, o Bifrost antecipa falhas e gargalos antes que eles afetem seu negócio.
+                            Além disso, conta com uma interface gráfica intuitiva que facilita o gerenciamento de erros, contêineres Docker e processos, transformando dados brutos em insights acionáveis.
+                        </p>
+                        <button class="modal_btn btn_bt contact">Entrar em Contato</button>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="container_t">
-            <h2 class="title_products">NOSSOS PRODUTOS</h2>
-        </div>
-
-        <div class="product_card portal_heimdall heimdall">
             <div class="container_t">
-                <h2 class="product_title PH">PORTAL HEINDALL</h2>                
-            </div>            
-            <div class="product_logo">
-                <img class="product_img" src="icons/Heindall/heindall_gold.png" alt="Logo Portal Heindall">
+                <h2 class="title_products">NOSSOS PRODUTOS</h2>
             </div>
-            <div class="product_modal">
-                <div class="product_modal_content">
-                    <span class="close_modal">&times;</span>
-                    <h2 class="PH">PORTAL HEIMDALL</h2>
-                    <p class="modal_text">o Portal Heimdall se Trata de uma Plataforma para clientes e Funcionario, onde são feitos todos os suportes solicitados pela empresa..
-                        <br>Diferencialmente das outras empresas aqui, você pode ter uma linha direta de apoio com um atendimento imediato graças a Plataforma oficial Heimdall..
-                    </p>
-                    <div class="Container_Modal_btn">
-                        <button class="modal_btn btn_ph">Acessar Plataforma</button>
-                        <button class="modal_btn btn_ph">Entrar em Contato</button>
+            <div class="product_card portal_heimdall heimdall">
+                <div class="container_t">
+                    <h2 class="product_title PH">PORTAL HEINDALL</h2>                
+                </div>            
+                <div class="product_logo">
+                    <img class="product_img" src="icons/Heindall/heindall_gold.png" alt="Logo Portal Heindall">
+                </div>
+                <div class="product_modal">
+                    <div class="product_modal_content">
+                        <span class="close_modal">&times;</span>
+                        <h2 class="PH">PORTAL HEIMDALL</h2>
+                        <p class="modal_text">o Portal Heimdall se Trata de uma Plataforma para clientes e Funcionario, onde são feitos todos os suportes solicitados pela empresa..
+                            <br>Diferencialmente das outras empresas aqui, você pode ter uma linha direta de apoio com um atendimento imediato graças a Plataforma oficial Heimdall..
+                        </p>
+                        <div class="Container_Modal_btn">
+                            <button class="modal_btn btn_ph">Acessar Plataforma</button>
+                            <button class="modal_btn btn_ph contact">Entrar em Contato</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<section class="service_section">
+<section id="service_info" class="service_section">
     <div class="service_header">
         <h2>SERVIÇOS</h2>
         <p>Atuamos na área de Tecnologia da Informação e de suporte tecnicos,<br>oferecendo o serviçosd de mais alte excelencia.</p>
@@ -157,7 +161,38 @@
             <li><span class="check">✔</span> ACESSCIBILIDADE</li>
             <li><span class="check">✔</span> COMPROMETIMENTO</li>
         </ul>
-            <a href="#" class="btn_contact">ENTRAR EM CONTANTO</a>
+            <a href="#" class="btn_contact contact">ENTRAR EM CONTATO</a>
         </div>
     </div>
 </section>
+
+<div class="product_modal" id="contactModal">
+    <div class="product_modal_content portal_heimdall">
+        <span class="close_modal" id="closeContactModal">&times;</span>
+        <h2 class="PH">Fale Conosco</h2>
+        <p class="modal_text">
+            Para contatar o melhor suporte a usa empresa.
+        </p>
+        <a href="" target="_blank" class="whatsapp_btn">FALAR PELO WHATSAPP</a>
+        <div class="social_section">
+            <h3>Redes sociais</h3>
+            <div class="icons">
+                <a href="#"><img src="icons/socialmedia/Instagram.png" alt="Instagram" /></a>
+                <a href="#"><img src="icons/socialmedia/linkedin.png" alt="LinkedIn" /></a>
+            </div>
+        </div>
+        <form class="contact_form">
+            <input type="text" placeholder="Insira seu Nome" required />
+            <input type="email" placeholder="Insira seu E-mail" required />
+            <input type="tel" placeholder="Insira seu Telefone" />
+            <textarea placeholder="Digite sua Mensagem" rows="4"></textarea>
+            <div class="Container_Modal_btn">
+                <button type="submit" class="modal_contact_btn">ENVIAR MENSAGEM</button>
+            </div>
+        </form>
+        <div class="contact_info">
+            <p><strong>TELEFONE:</strong> (41) 0000-0000</p>
+            <p><strong>WHATSAPP:</strong> (41) 0000-0000</p>
+        </div>
+    </div>
+</div>

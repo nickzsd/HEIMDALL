@@ -123,17 +123,17 @@
     background-color: var(--background);
 }
 
+.btn_ph{
+    border: 2px solid var(--heindall_maincolor);
+    background-color: var(--background);
+}
+
 .btn_bt:hover{
     background-color: var(--bifrost_maincolor);
 }
 
 .btn_ph:hover{
     background-color: var(--heindall_maincolor);
-}
-
-.btn_ph{
-    border: 2px solid var(--heindall_maincolor);
-    background-color: var(--background);
 }
 
 .modal_btn{

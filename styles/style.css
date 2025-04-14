@@ -1,6 +1,17 @@
+html {
+    scroll-behavior: smooth;
+}
+
+
 body {
     margin: 0; 
     font-family: Arial, sans-serif; 
+    scrollbar-width: none;    
+    -ms-overflow-style: none; 
+}
+
+::-webkit-scrollbar {
+    display: none;     
 }
 
 header {
@@ -12,12 +23,19 @@ header {
     border-bottom: 3px solid var(--heindall_maincolor);
 }
 
+.fixed{
+    position: fixed;
+    width: 97%;
+    z-index: 900;
+}
+
 .background_banner{
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
 .logo, .company_name, .menu_toggle {
+    z-index: 901;
     flex: 1;
     text-align: center;
 }
@@ -111,6 +129,35 @@ header {
     display: block;
 }
 
+.menu_link {
+    display: inline-block;
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    position: relative;
+}
+
+.menu_link::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: currentColor;
+    left: 0;
+    bottom: -3px;
+    transition: width 0.3s ease;
+}
+
+.menu_link:hover {
+    transform: scale(1.05);
+}
+
+.menu_link:hover::after {
+    width: 100%;
+}
+
+
 @media(max-width: 600px) {
     .carousel {        
         height: 300px;         
@@ -121,6 +168,10 @@ header {
 }
 
 @media (min-width: 1200px) {
+    .fixed{
+        width: 98%;
+    }
+    
     .heimdall {
         margin-left: 200px;
         margin-right: 200px;

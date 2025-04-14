@@ -5,6 +5,12 @@ menuToggle.addEventListener("click", () => {
     document.body.classList.toggle("menu-open");
 });
 
+window.addEventListener('scroll', function () {
+    if(document.body.classList.toggle("menu-open"))
+        document.body.classList.toggle("menu-open");
+});
+
+
 const imagesContainer = document.getElementById('carouselImages');
 const indicators = document.querySelectorAll('.indicator');
 const totalSlides = indicators.length;
