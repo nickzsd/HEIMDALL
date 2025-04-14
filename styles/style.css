@@ -157,6 +157,29 @@ header {
     width: 100%;
 }
 
+.section_info{
+    transition: transform 1.2s;
+}
+
+.hover_scale{
+    transition: transform 1.2s;
+}
+
+.section_info:hover{
+    transform: scale(1.1);
+}
+
+.section_info:hover .hover_scale{
+    transform: scale(0.9);
+}
+
+body.modal-open .section_info,
+body.modal-open .hover_scale {
+    transition: ease;
+    transform: none !important;
+}
+
+
 
 @media(max-width: 600px) {
     .carousel {        

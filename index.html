@@ -11,10 +11,12 @@
     <link rel = "stylesheet" href = "styles/products.css" type = "text/css" media = "screen"/>     
     <link rel = "stylesheet" href = "styles/service.css" type = "text/css" media = "screen"/>     
     <link rel = "stylesheet" href = "styles/contact.css" type = "text/css" media = "screen"/>     
+    <link rel = "stylesheet" href = "styles/footer.css" type = "text/css" media = "screen"/>     
     <script type="module" src="javascript/headerFunctions.js"></script>      
     <script type="module" src="javascript/products.js"></script>  
-    <script type="module" src="javascript/contact.js"></script>  
-    <script src="javascript/aboutFunctions.js"></script>  
+    <script type="module" src="javascript/contact.js"></script>   
+    <script src="javascript/footerFunctions.js"></script>    
+    <script src="javascript/aboutFunctions.js"></script>      
 </head>
 <body>
 
@@ -32,7 +34,7 @@
         <li><a href="#company_info"  class="menu_link">- QUEM SOMOS</a></li>
         <li><a href="#products_info" class="menu_link">- NOSSOS PRODUTOS</a></li>
         <li><a href="#service_info"  class="menu_link">- NOSSOS SERVIÇOS</a></li>
-        <li><a class="menu_link contact">- ENTRAR EM CONTATO</a></li>
+        <li><a class="menu_link contact">- TRABALHE CONOSCO</a></li>
         <li><a class="menu_link">- PLATAFORMA DE SERVIÇOS</a></li>
     </ul>
 </div>
@@ -50,19 +52,19 @@
     </div>
 </div>
 
-<section id="company_info">
+<section id="company_info" class="section_info">
     <div class="container_about">
-        <h1  id="t_text" class="title hidden">SOBRE NÓS:</h1>
-        <div id="b_text" class="box text1 hidden"></div>
-        <div id="m_text" class="box text2 hidden"></div>
+        <h1  id="t_text" class="about_title hidden hover_scale">SOBRE NÓS:</h1>
+        <div id="b_text" class="text1 hidden hover_scale"></div>
+        <div id="m_text" class="text2 hidden hover_scale"></div>
     </div>
 </section>
 
-<section id="products_info">
+<section id="products_info" class="section_info">
     <div class="container_products">    
         <div class="products_wrapper">
             <div class="product_card bifrost heimdall">
-                <div class="container_t">
+                <div class="container_t hover_scale">
                     <h2 class="product_title BT">BIFROST</h2>                
                 </div>            
                 <div class="product_logo">
@@ -79,11 +81,11 @@
                     </div>
                 </div>
             </div>
-            <div class="container_t">
+            <div class="container_t hover_scale">
                 <h2 class="title_products">NOSSOS PRODUTOS</h2>
             </div>
             <div class="product_card portal_heimdall heimdall">
-                <div class="container_t">
+                <div class="container_t hover_scale">
                     <h2 class="product_title PH">PORTAL HEINDALL</h2>                
                 </div>            
                 <div class="product_logo">
@@ -107,61 +109,60 @@
     </div>
 </section>
 
-<section id="service_info" class="service_section">
-    <div class="service_header">
-        <h2>SERVIÇOS</h2>
-        <p>Atuamos na área de Tecnologia da Informação e de suporte tecnicos,<br>oferecendo o serviçosd de mais alte excelencia.</p>
-    </div>
-
-    <div class="contendt_service">
-        <div class="service_description">
-            <div class="service_item">
-            <div class="service_icon">&#128230;</div>
-        <div>
-            <h3>NA ÁREA DE TI:</h3>
-            <ul>
-                <li>Consultoria em ERP's</li>
-                <li>Assessoria e Mentoria</li>
-                <li>desenvolvimento de produtos</li>
-            </ul>
+<section id="service_info" class="service_section section_info">
+    <div class="container_service">
+        <div class="service_header hover_scale">
+            <h2>SERVIÇOS</h2>
+            <p>Atuamos na área de Tecnologia da Informação e de suporte tecnicos,<br>oferecendo o serviçosd de mais alte excelencia.</p>
         </div>
-    </div>
 
-    <div class="service_item">
-        <div class="service_icon">&#128230;</div>
-        <div>
-        <h3>SOLUÇÕES DE APLICATIVOS:</h3>
-            <ul>
-                <li>Bancarios, Marketing, Empresariais</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="service_item">
-        <div class="service_icon">&#128230;</div>
-        <div>
-            <h3>SOLUÇÃO DE PRODUTOS:</h3>
-            <ul>
-                <li>Bifrost</li>
-                <li>Portal Heimdall</li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-    <div class="service_box">
-        <span class="line"></span>
-        <p>
-        Na <strong>Heindall</strong>, Seguimos<br>
-        que com tecnologia e ambição<br>
-        pode-se levar empresas ao sucesso.
-        </p>
-        <ul class="checklist">
-            <li><span class="check">✔</span> CONFIANÇA</li>
-            <li><span class="check">✔</span> ACESSCIBILIDADE</li>
-            <li><span class="check">✔</span> COMPROMETIMENTO</li>
-        </ul>
-            <a href="#" class="btn_contact contact">ENTRAR EM CONTATO</a>
+        <div class="contendt_service hover_scale">
+            <div class="service_description">
+                <div class="service_item">
+                    <div class="service_icon">&#128230;</div>
+                    <div>
+                        <h3>NA ÁREA DE TI:</h3>
+                        <ul>
+                            <li>Consultoria em ERP's</li>
+                            <li>Assessoria e Mentoria</li>
+                            <li>desenvolvimento de produtos</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service_item">
+                    <div class="service_icon">&#128230;</div>
+                    <div>
+                        <h3>SOLUÇÕES DE APLICATIVOS:</h3>
+                        <ul>
+                            <li>Bancarios, Marketing, Empresariais</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service_item">
+                    <div class="service_icon">&#128230;</div>
+                    <div>
+                        <h3>SOLUÇÃO DE PRODUTOS:</h3>
+                        <ul>
+                            <li>Bifrost</li>
+                            <li>Portal Heimdall</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="service_box">
+                <span class="line"></span>
+                <p>
+                Na <strong>Heindall</strong>, Seguimos<br>
+                que com tecnologia e ambição<br>
+                pode-se levar empresas ao sucesso.
+                </p>
+                <ul class="checklist">
+                    <li><span class="check">✔</span> CONFIANÇA</li>
+                    <li><span class="check">✔</span> ACESSCIBILIDADE</li>
+                    <li><span class="check">✔</span> COMPROMETIMENTO</li>
+                </ul>
+                    <a href="#" class="btn_contact contact">ENTRAR EM CONTATO</a>
+            </div>
         </div>
     </div>
 </section>
@@ -196,3 +197,56 @@
         </div>
     </div>
 </div>
+
+<section id="footer_info">
+    <footer class="footer_wrapper">
+        <div class="footer_container">
+            <div class="footer_column">
+                <p class="footer_description">
+                Somos uma empresa de suporte em constante crescimento e inovação sempre buscando o melhor para você e seu negocio.
+                </p>
+                <div class="footer_socials">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-linkedin"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+            <div class="footer_column">
+                <h4 class="footer_title">Quem Somos</h4>
+                <ul class="footer_links">
+                <li><a>História da Heimdall</a></li>
+                <li><a class="contact">Trabalhe Conosco</a></li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <h4 class="footer_title">Produtos</h4>
+                <ul class="footer_links">
+                <li><a>Portal Heimdall</a></li>
+                <li><a>Bifrost</a></li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <h4 class="footer_title">Outros</h4>
+                <ul class="footer_links">
+                    <li><a>Política de Privacidade</a></li>
+                    <li><a>Política de Cookies</a></li>
+                    <li>
+                        <button class="footer_language_toggle" onclick="toggleLanguageDropdown()">Choose Language</button>
+                        <div id="language_dropdown" class="footer_language_box language_hidden">
+                            <a >English / 🇺🇸</a>
+                            <a >Español / 🇪🇸</a>
+                            <a >Português / 🇧🇷</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <p>Copyright © 2025</p>
+            <p>heimdall Technology LTDA- CNPJ: 00.000.000/0000-00</p>
+            <p>rua, 000, Curitiba/PR - Brasil</p>
+            <p>contato@heimdall.com</p>
+        </div>
+    </footer>
+</section>

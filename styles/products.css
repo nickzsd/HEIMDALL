@@ -78,7 +78,7 @@
     object-fit: contain;
 }
 
-.product_modal {
+.product_modal {    
     display: none;
     position: fixed;
     top: 0;
@@ -88,12 +88,22 @@
     background-color: rgba(0, 0, 0, 0.3); 
     backdrop-filter: blur(10px);   
     -webkit-backdrop-filter: blur(10px);  
-    z-index: 999;
+    z-index: 9999; 
     justify-content: center;
     align-items: center;
 }
 
+body.modal-open {
+    overflow: hidden;
+}
+
+body.modal-open .section_info,
+body.modal-open .hover_scale {
+    pointer-events: none;
+}
+
 .product_modal_content {
+    pointer-events: auto;
     max-width: 600px;
     padding: 40px;
     background-color: var(--heindall_cleancolor);
