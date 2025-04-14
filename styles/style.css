@@ -119,3 +119,11 @@ header {
         font-size: 14px;
     }
 }
+
+@media (min-width: 1200px) {
+    .heimdall {
+        margin-left: 200px;
+        margin-right: 200px;
+        border-radius: 10px;
+    }
+}

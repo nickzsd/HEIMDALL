@@ -9,6 +9,7 @@
     <link rel = "stylesheet" href = "styles/style.css" type = "text/css" media = "screen"/>     
     <link rel = "stylesheet" href = "styles/about.css" type = "text/css" media = "screen"/>     
     <link rel = "stylesheet" href = "styles/products.css" type = "text/css" media = "screen"/>     
+    <link rel = "stylesheet" href = "styles/service.css" type = "text/css" media = "screen"/>     
     <script type="module" src="javascript/headerFunctions.js"></script>  
     <script src="javascript/aboutFunctions.js"></script>  
     <script type="module" src="javascript/products.js"></script>  
@@ -53,19 +54,15 @@
     <div id="m_text" class="box text2 hidden"></div>
 </div>
 
-<div class="container_products">
-    <div class="container_t">
-        <h1 class="title_products">NOSSOS PRODUTOS</h1>
-    </div>
+<div class="container_products">    
     <div class="products_wrapper">
-        <div class="product_card">
+        <div class="product_card bifrost heimdall">
             <div class="container_t">
                 <h2 class="product_title BT">BIFROST</h2>                
             </div>            
             <div class="product_logo">
                 <img class="product_img" src="icons/Bifrost/purple_bifrost_logo.png" alt="Logo Bifrost">
             </div>
-
             <div class="product_modal">
                 <div class="product_modal_content">
                     <span class="close_modal">&times;</span>
@@ -73,18 +70,22 @@
                     <p class="modal_text">Bifrost é uma poderosa plataforma de monitoramento de servidores, desenvolvida para oferecer total visibilidade sobre o desempenho da sua infraestrutura. Com monitoramento em tempo real de CPU, memória RAM e discos, o Bifrost antecipa falhas e gargalos antes que eles afetem seu negócio.
                         Além disso, conta com uma interface gráfica intuitiva que facilita o gerenciamento de erros, contêineres Docker e processos, transformando dados brutos em insights acionáveis.
                     </p>
+                    <button class="modal_btn btn_bt">Entrar em Contato</button>
                 </div>
             </div>
         </div>
 
-        <div class="product_card">
+        <div class="container_t">
+            <h1 class="title_products">NOSSOS PRODUTOS</h1>
+        </div>
+
+        <div class="product_card portal_heimdall heimdall">
             <div class="container_t">
                 <h2 class="product_title PH">PORTAL HEINDALL</h2>                
             </div>            
             <div class="product_logo">
                 <img class="product_img" src="icons/Heindall/heindall_gold.png" alt="Logo Portal Heindall">
             </div>
-
             <div class="product_modal">
                 <div class="product_modal_content">
                     <span class="close_modal">&times;</span>
@@ -92,8 +93,71 @@
                     <p class="modal_text">o Portal Heimdall se Trata de uma Plataforma para clientes e Funcionario, onde são feitos todos os suportes solicitados pela empresa..
                         <br>Diferencialmente das outras empresas aqui, você pode ter uma linha direta de apoio com um atendimento imediato graças a Plataforma oficial Heimdall..
                     </p>
+                    <div class="Container_Modal_btn">
+                        <button class="modal_btn btn_ph">Acessar Plataforma</button>
+                        <button class="modal_btn btn_ph">Entrar em Contato</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<section class="service_section">
+    <div class="service_header">
+        <h2>SERVIÇOS</h2>
+        <p>Atuamos na área de Tecnologia da Informação e de suporte tecnicos,<br>oferecendo o serviçosd de mais alte excelencia.</p>
+    </div>
+
+    <div class="contendt_service">
+        <div class="service_description">
+            <div class="service_item">
+            <div class="service_icon">&#128230;</div>
+        <div>
+            <h3>NA ÁREA DE TI:</h3>
+            <ul>
+                <li>Consultoria em ERP's</li>
+                <li>Assessoria e Mentoria</li>
+                <li>desenvolvimento de produtos</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="service_item">
+        <div class="service_icon">&#128230;</div>
+        <div>
+        <h3>SOLUÇÕES DE APLICATIVOS:</h3>
+            <ul>
+                <li>Bancarios, Marketing, Empresariais</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="service_item">
+        <div class="service_icon">&#128230;</div>
+        <div>
+            <h3>SOLUÇÃO DE PRODUTOS:</h3>
+            <ul>
+                <li>Bifrost</li>
+                <li>Portal Heimdall</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="service_box">
+        <span class="line"></span>
+        <p>
+        Na <strong>Heindall</strong>, Seguimos<br>
+        que com tecnologia e ambição<br>
+        pode-se levar empresas ao sucesso.
+        </p>
+        <ul class="checklist">
+            <li><span class="check">✔</span> CONFIANÇA</li>
+            <li><span class="check">✔</span> ACESSCIBILIDADE</li>
+            <li><span class="check">✔</span> COMPROMETIMENTO</li>
+        </ul>
+            <a href="#" class="btn_contact">ENTRAR EM CONTANTO</a>
+        </div>
+    </div>
+</section>

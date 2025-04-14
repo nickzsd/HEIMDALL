@@ -1,6 +1,6 @@
 .container_products{
     width: 100%;
-    height: 700px;    
+    height: 500px;    
     background-color: var(--heindall_cleancolor);
 }
 
@@ -8,30 +8,33 @@
     text-align: center;
 }
 
-.title_products{
-    top: 40px;       
+.title_products{      
     display: inline-block;
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
     font-weight: bold;
-    transition: all 1s ease;    
-    border-bottom: 2px solid var(--heindall_subcolor);
-    color: var(--heindall_subcolor);
+    transition: all 1s ease; 
+    border-top: 3px solid var(--heindall_maincolor); 
+    border-bottom: 3px solid var(--heindall_maincolor);
+
+    color: var(--background);
     position: relative;  
 }
 
 .products_wrapper {
-    margin-top: 5rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     gap: 60px;
     flex-wrap: wrap;
+    align-items: center;
 }
 
-.product_card {
-    border: 8px solid black;
-    padding: 20px;
-    width: 300px;
+.product_card {    
+    margin-top: 3rem;    
+    border: 6px solid black;
+    height: auto;
     box-sizing: border-box;
+    padding: 15px;
+    width: 270px;
+    max-height: 500px;
 }
 
 .product_title {
@@ -43,14 +46,14 @@
 .BT{     
     display: inline-block;
     transition: all 1s ease;    
-    border-bottom: 2px solid var(--bifrost_midcolor);
+    border-bottom: 2px solid var(--bifrost_cleancolor);
     position: relative;  
 }
 
 .PH{
     display: inline-block;
     transition: all 1s ease;    
-    border-bottom: 2px solid var(--heindall_maincolor);
+    border-bottom: 2px solid var(--heindall_cleancolor);
     position: relative;  
 }
 
@@ -82,7 +85,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.3); 
+    background-color: rgba(0, 0, 0, 0.3); 
     backdrop-filter: blur(10px);   
     -webkit-backdrop-filter: blur(10px);  
     z-index: 999;
@@ -106,4 +109,46 @@
     right: 20px;
     font-size: 24px;
     cursor: pointer;
+}
+
+.Container_Modal_btn{
+    display: flex;
+    margin-top: 2rem;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.btn_bt{
+    border: 2px solid var(--bifrost_maincolor);
+    background-color: var(--background);
+}
+
+.btn_bt:hover{
+    background-color: var(--bifrost_maincolor);
+}
+
+.btn_ph:hover{
+    background-color: var(--heindall_maincolor);
+}
+
+.btn_ph{
+    border: 2px solid var(--heindall_maincolor);
+    background-color: var(--background);
+}
+
+.modal_btn{
+    font-size: 13px;    
+    border-radius: 10px;  
+    color: white;  
+    width: 30%;
+    height: 1.5rem;
+    transition: 0.6s;
+}
+
+.bifrost{
+    background: linear-gradient(to bottom, var(--bifrost_maincolor), var(--bifrost_midcolor));
+}
+
+.portal_heimdall{
+    background: linear-gradient(to bottom, var(--heindall_maincolor), var(--heindall_subcolor));
 }
