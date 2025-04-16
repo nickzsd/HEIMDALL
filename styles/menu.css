@@ -1,0 +1,217 @@
+html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+}
+  
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+::-webkit-scrollbar {
+    display: none;     
+}
+
+img {
+	pointer-events: none;
+	-webkit-user-drag: none;
+}
+
+.company_logo_container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    z-index: 5;
+    flex-shrink: 0;
+}
+
+.company_logo_container img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.4s ease;
+}
+
+.logo_hover {
+    opacity: 0;
+}
+
+.company_logo_container:hover .logo_hover {
+    opacity: 1;
+}
+  
+.company_logo_container:hover .logo_default {
+    opacity: 0;
+}
+  
+  
+#menu_toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 4;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 8px;
+    border-radius: 4px;
+    transition: right 0.3s ease;
+    z-index: 901;
+}
+
+#sidebar_menu {
+    position: fixed;
+    top: 10px;
+    right: -250px;
+    width: 200px;
+    background: transparent;
+    padding: 10px;
+    transition: right 0.3s ease; 
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-radius: 10px 0 0 10px;
+    cursor: pointer;
+    z-index: 900;
+}
+
+#sidebar_menu.show {
+    right: 0px;
+}
+
+#menu_toggle.hide {
+    right: -50px; 
+}
+
+.menu_btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    opacity: 0.6;
+    transform: scale(0.95);
+}
+  
+.menu_btn:hover {
+    opacity: 1;
+    transform: scale(1.05);
+    z-index: 2;
+}
+  
+#sidebar_menu:hover .menu_btn {
+    opacity: 0.6;
+    transform: scale(0.95);
+}
+  
+#sidebar_menu .menu_btn:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+#window_container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.window {
+    position: absolute;
+    width: 400px;
+    height: 680px;
+    min-width: 300px;
+    max-height: 90%;
+    min-height: 200px;
+    background: rgba(20, 20, 40, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    color: white;
+    pointer-events: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    resize: both;
+    z-index: 1;
+}
+
+.window_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #333;
+    color: white;
+    padding: 8px 12px;
+    cursor: move;
+    border-radius: 8px 8px 0 0;
+    user-select: none;
+}
+
+.window_controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.window_controls span {
+    cursor: pointer;
+    font-size: 16px;
+    padding: 2px 6px;
+    font-weight: bold;
+    transition: background 0.2s ease;
+}
+
+.window_controls span:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+
+.window_content {
+    flex-grow: 1;
+    overflow: auto;
+    padding: 10px;
+}
+
+.minimize_btn {
+    cursor: pointer;
+}
+
+#minimized_windows_dock {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    gap: 10px;
+    z-index: 6;
+}
+
+.minimized_icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+}

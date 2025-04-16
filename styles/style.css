@@ -179,8 +179,6 @@ body.modal-open .hover_scale {
     transform: none !important;
 }
 
-
-
 @media(max-width: 600px) {
     .carousel {        
         height: 300px;         

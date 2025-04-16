@@ -10,16 +10,30 @@ let mouseX = 20, mouseY = 20;
 
 function switchUser() {
     const userType = document.getElementById("userType");
+    const loginform = document.getElementById("loginContainer");
+    const logoMain = document.getElementById("logoMain");
 
     setTimeout(() => {
         if (currentUser === "cliente") {
+            currentUser = "funcionario";
+
             userType.textContent = "Funcionário";
             userType.className = "funcionario";
-            currentUser = "funcionario";
+
+            loginform.classList.remove("cliente", "funcionario");
+            loginform.classList.add("login_container", currentUser); 
+            
+            logoMain.src = "../icons/Heindall/heindall_white.png";
         } else {
+            currentUser = "cliente";
+
             userType.textContent = "Cliente";
             userType.className = "cliente";
-            currentUser = "cliente";
+
+            loginform.classList.remove("cliente", "funcionario");
+            loginform.classList.add("login_container", currentUser);
+            
+            logoMain.src = "../icons/Heindall/heindall_black.png";
         }
     }, 300);
 }
@@ -60,7 +74,8 @@ function login() {
             }            
 
             if (user.acess_key.toString().trim() === senha.toString().trim()) {
-                alert(`Logando como ${user.user || user.email}...`);
+                window.currentUserData = user;
+                window.location.href = '../html/menu.html';
             } else {
                 errorMsg.textContent = "Senha incorreta.";
                 errorMsg.style.display = "block";
@@ -180,17 +195,29 @@ function animate() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const userType = document.getElementById("userType");    
+    const userType = document.getElementById("userType");  
+    const loginform = document.getElementById("loginContainer");  
+    const logoMain = document.getElementById("logoMain");
+
+    currentUser = "cliente";
 
     userType.textContent = "Cliente";
     userType.className = "cliente";
-    currentUser = "cliente";
+
+    loginform.classList.remove("cliente", "funcionario");
+    loginform.classList.add("login_container", currentUser);   
+    
+    logoMain.src = "../icons/Heindall/heindall_black.png";
 
     document.querySelector('.page_corner')?.addEventListener('click', switchUser);
     document.querySelector('button')?.addEventListener('click', login);
     document.getElementById('email')?.addEventListener('input', clearError);
     document.getElementById('senha')?.addEventListener('input', clearError);
-    canvas.addEventListener("click", toggleEye);
+    document.querySelector('.page_corner').addEventListener('click', function () {
+        this.classList.toggle('rotated');
+    });
+
+    canvas.addEventListener("click", toggleEye);        
 
     document.addEventListener("mousemove", e => {
         const container = document.getElementById("loginContainer");
