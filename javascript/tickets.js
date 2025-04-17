@@ -1,4 +1,7 @@
-function openTicket(ticketId) {
+if(document.querySelector('.window_tickets')){
+  document.querySelector('.back_button').addEventListener('click', goBackToList);
+
+  function openTicket(ticketId) {
     const ticketList = document.getElementById('ticket_list');
     const ticketDetails = document.getElementById('ticket_details');
       
@@ -15,7 +18,7 @@ function openTicket(ticketId) {
       
     document.querySelector('.add_note_section').style.display = 'block';
   }
-    
+
   function goBackToList() {
     const ticketList = document.getElementById('ticket_list');
     const ticketDetails = document.getElementById('ticket_details');
@@ -23,6 +26,4 @@ function openTicket(ticketId) {
     ticketList.style.display = 'block';
     ticketDetails.style.display = 'none';
   }
-    
-  document.querySelector('.back_button').addEventListener('click', goBackToList);
-  
+}

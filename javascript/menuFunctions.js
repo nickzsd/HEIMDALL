@@ -1,6 +1,11 @@
 window.currentUserData = {
-    register_type: 'funcionario' //TEM QUE TIRAR ESSA BOSTA
-}//para teste
+  user: 'empresa1',
+  email: 'empresa1@email.com.br',
+  contact_phone: '(41)0000-0000',
+  register_type: 'cliente',
+  function: "",
+  user_description: 'teste de descrição'
+}
 
 const window_container = document.getElementById('window_container');
 const minimized_dock = document.getElementById('minimized_windows_dock');
@@ -14,86 +19,91 @@ let hideSidebarTimer;
 
 const apontamentos_html = `
 <selection id="appointment_selections" class="appointment_selections"> 
-    <div class="time_entry_grid">
-        <h2 class = "main_title">Lançar Apontamento</h2>
-        <form id="time_entry_form">
-            <textarea id="description" placeholder="O que você está fazendo?"></textarea>
-            <input id="project_input" type="text" placeholder="Projeto (obrigatório)" required>
-            <input id="task_input" type="text" placeholder="Tarefa">
-            <input id="contact_input" type="text" placeholder="Contato (obrigatório)" required>
-            <input id="ticket_input" type="text" placeholder="Chamado (obrigatório)" required>
+  <div class="time_entry_grid">
+      <h2 class = "main_title">Lançar Apontamento</h2>
+      <form id="time_entry_form">
+          <textarea id="description" placeholder="O que você está fazendo?"></textarea>
+          <input id="project_input" type="text" placeholder="Projeto (obrigatório)" required>
+          <input id="task_input" type="text" placeholder="Tarefa">
+          <input id="contact_input" type="text" placeholder="Contato (obrigatório)" required>
+          <input id="ticket_input" type="text" placeholder="Chamado (obrigatório)" required>
 
-            <div class="time_controls">
-            <div>
-                <label>Total</label>
-                <div id="total_time">0:00</div>
-            </div>
-            <div>
-                <label>Início</label>
-                <input type="time" id="start_time">
-            </div>
-            <div>
-                <label>Fim</label>
-                <input type="time" id="end_time">
-            </div>
-            <input type="date" id="date_picker">
-            </div>
+          <div class="time_controls">
+          <div>
+              <label>Total</label>
+              <div id="total_time">0:00</div>
+          </div>
+          <div>
+              <label>Início</label>
+              <input type="time" id="start_time">
+          </div>
+          <div>
+              <label>Fim</label>
+              <input type="time" id="end_time">
+          </div>
+          <input type="date" id="date_picker">
+          </div>
 
-            <button type="button" id="start_timer_btn">ENVIAR</button>
-        </form>
-    </div>
-    <div class="saved_entries_grid">
-        <h3 class = "main_title">Registros Recentes</h3>
-        <div class="entry_card">
-            <div class="entry_header">
-                <strong>Fulano da Silva</strong>
-                <div class="entry_duration">2h 30m</div>
-            </div>
-            <p><strong>Projeto X</strong> (Cliente Y)</p>
-            <p>🛠 Desenvolvimento · <span>Contato Z</span> · <span>00099</span></p>
-            <p>Refatoração do módulo principal</p>
-            <small>Criado há 10 minutos</small>
-        </div>
-        <div class="entry_card">
-            <div class="entry_header">
-                <strong>Fulano da Silva</strong>
-                <div class="entry_duration">1h 15m</div>
-            </div>
-            <p><strong>Projeto Z</strong> (Cliente K)</p>
-            <p>🧰 Suporte · <span>Contato J</span> · <span>00042</span></p>
-            <p>Correção de bugs relatados</p>
-            <small>Editado há 25 minutos</small>
-        </div>
-    </div>
+          <button type="button" id="start_timer_btn">ENVIAR</button>
+      </form>
+  </div>
+  <div class="saved_entries_grid">
+      <h3 class = "main_title">Registros Recentes</h3>
+      <div class="entry_card">
+          <div class="entry_header">
+              <strong>Fulano da Silva</strong>
+              <div class="entry_duration">2h 30m</div>
+          </div>
+          <p><strong>Projeto X</strong> (Cliente Y)</p>
+          <p>🛠 Desenvolvimento · <span>Contato Z</span> · <span>00099</span></p>
+          <p>Refatoração do módulo principal</p>
+          <small>Criado há 10 minutos</small>
+      </div>
+      <div class="entry_card">
+          <div class="entry_header">
+              <strong>Fulano da Silva</strong>
+              <div class="entry_duration">1h 15m</div>
+          </div>
+          <p><strong>Projeto Z</strong> (Cliente K)</p>
+          <p>🧰 Suporte · <span>Contato J</span> · <span>00042</span></p>
+          <p>Correção de bugs relatados</p>
+          <small>Editado há 25 minutos</small>
+      </div>
+  </div>
 </selection>
 `;
 
 const perfil_window_html = `
-  <div class="form_container">
-    <div class="left_column">
+<div class="form_container">
+  <div class="left_column">
+    <div class="profile_image">
       <div class="user_icon">👤</div>
-      <select class="role_selector" id="user_role">
-        <option value="employee">Funcionário</option>
-        <option value="company">Empresa</option>
-      </select>
+    </div>  
+    <select class="role_selector" id="user_role">
+      <option value="employee">Funcionário</option>
+      <option value="company">Cliente</option>
+    </select>
+    <p class="profile_label">descrição</p>
+    <div class="service_wrapper">
       <textarea class="service_type" id="service_type" placeholder="Tipo de Serviço"></textarea>
     </div>
-
-    <div class="right_column">
-      <input type="text" id="user_name" class="form_input" placeholder="Nome">
-      <input type="email" id="user_email" class="form_input" placeholder="Email">
-      <input type="tel" id="user_phone" class="form_input small" placeholder="Telefone">
-    </div>
   </div>
+  <div class="right_column">
+    <p class="profile_label">nome</p>
+    <input type="text" id="user_name" class="form_input" placeholder="Nome">
+    <p class="profile_label">email</p>
+    <input type="email" id="user_email" class="form_input" placeholder="Email">
+    <p class="profile_label">Telefone</p>
+    <input type="tel" id="user_phone" class="form_input small" placeholder="Telefone">
+  </div>
+</div>
 `;
 
 const ticketHTML = `
-  <div id="ticket_module_container" class="ticket_module_container">
-  <!-- Lista de tickets -->
+<div id="ticket_module_container" class="ticket_module_container">
   <div id="ticket_list" class="ticket_list_container">
-    <!-- Ticket 1 -->
-    <div class="ticket_item" onclick="openTicket(284)">
-      <div class="ticket_status_tag" id="status_284">New</div>
+    <div id="ticket" class="ticket_item">
+      <div class="ticket_status_tag">New</div>
       <div class="ticket_title" id="title_284">Configure new deposits for transfer between HQ and Branch #284</div>
       <div class="ticket_meta">
         <span class="ticket_user" id="user_284">Alex Turner (Blue Tech)</span> •
@@ -105,33 +115,15 @@ const ticketHTML = `
         <span class="status" id="status_label_284">Open</span>
       </div>
     </div>
-
-    <!-- Ticket 2 -->
-    <div class="ticket_item" onclick="openTicket(283)">
-      <div class="ticket_title" id="title_283">Adjust daily summary and sales order profitability #283</div>
-      <div class="ticket_meta">
-        <span class="ticket_user" id="user_283">John Smith (Blue Tech)</span> •
-        <span class="ticket_time" id="time_283">Replied 4 hours ago</span>
-      </div>
-      <div class="ticket_props">
-        <span class="priority_tag medium" id="priority_283">Medium</span>
-        <span class="group_info" id="group_283">Blue Tech / John</span>
-        <span class="status" id="status_label_283">Open</span>
-      </div>
-    </div>
   </div>
-
-  <!-- Detalhes do ticket -->
-  <div id="ticket_details" class="ticket_details_container style="display: none;">
-    <button class="back_button" onclick="goBackToList()">Back</button>
+  <div id="ticket_details" class="ticket_details_container">
+    <button class="back_button">Back</button>
     <h2 class="ticket_title_view" id="ticket_title_view">Billing error on invoice 8887</h2>
-
     <div class="ticket_tags">
       <span class="browser_tag" id="browser_tag">Chrome 135.0.0.0</span>
       <span class="os_tag" id="os_tag">Windows 10</span>
       <span class="origin_tag" id="origin_tag">/support/tickets</span>
     </div>
-
     <div class="ticket_info_section">
       <p><strong id="reported_by">John Smith</strong> reported via portal<br><small id="report_time">1 day ago (Mon, Apr 14, 2025, 10:22 AM)</small></p>
       <p id="ticket_description">XML issue on Invoice OV306135, NFSe 8887.<br>Path: Accounts Receivable → Periodic Activities → NFSe Manager.</p>
@@ -140,12 +132,10 @@ const ticketHTML = `
         <img src="ticket_nfse.png" alt="attachment" width="40" id="attachment_image"> ticket_nfse.png (27.75 KB)
       </div>
     </div>
-
     <div class="ticket_note_history">
       <p><strong id="note_author">John Smith</strong> added a public note<br><small id="note_time">1 day ago (Mon, Apr 14, 2025, 5:39 PM)</small></p>
       <p id="note_content">Ticket forwarded to NExpress developer. Problem confirmed not to be in AX.</p>
     </div>
-
     <div class="ticket_sidebar">
       <p>Status: <strong id="ticket_status">Closed</strong></p>
       <p>Tag: <strong id="ticket_tag">Important</strong></p>
@@ -155,8 +145,6 @@ const ticketHTML = `
       <p>Agent: <strong id="ticket_agent">--</strong></p>
       <button onclick="updateTicket()">Update</button>
     </div>
-
-    <!-- Adicionar anotação -->
     <div class="add_note_section">
       <textarea id="note_input" placeholder="Add a note, @mention someone..."></textarea>
       <div class="note_toolbar">
@@ -176,7 +164,6 @@ const ticketHTML = `
     </div>
   </div>
 </div>
-
 `;
 
 document.getElementById('menu_toggle').addEventListener('mouseover', () => {
@@ -251,24 +238,25 @@ function renderMenu() {
     const sidebar = document.getElementById('sidebar_menu');
     sidebar.innerHTML = '';
 
-    const create_btn = (label, icon_class, type, content_html) => {
+    const create_btn = (label, icon_class, type, content_html, id) => {
         const btn = document.createElement('a');
         btn.className = 'menu_btn';
+        btn.id        = id;
         btn.innerHTML = `<i class="${icon_class}"></i> ${label}`;
         btn.addEventListener('click', () => create_window(type, label, content_html));
         sidebar.appendChild(btn);
     };
     
-    create_btn('Perfil/Profile', 'fas fa-user', 'profile', perfil_window_html);
-    create_btn('Chamados/Tickets', 'fas fa-ticket-alt', 'tickets', ticketHTML);
+    create_btn('Perfil/Profile', 'fas fa-user', 'profile', perfil_window_html,'PF');
+    create_btn('Chamados/Tickets', 'fas fa-ticket-alt', 'tickets', ticketHTML,'TK');
     
     if (window.currentUserData.register_type === 'funcionario') {
-        create_btn('Apontamentos', 'fas fa-clipboard-list', 'records',apontamentos_html);
+        create_btn('Apontamentos', 'fas fa-clipboard-list', 'records',apontamentos_html,'AP');
     }
 
-    create_btn('Configurações', 'fas fa-cog', 'settings', '<p>Aqui vão as configurações do sistema.</p>');
+    create_btn('Configurações', 'fas fa-cog', 'settings', '<p>Aqui vão as configurações do sistema.</p>',"CF");
     
-    create_btn('Sair', 'fas fa-sign-out-alt', 'logout', '<p>Tem certeza que deseja sair?</p>');    
+    create_btn('Sair', 'fas fa-sign-out-alt', 'logout', '<p>Tem certeza que deseja sair?</p>',"OUT");    
 }  
 
 function create_window(type, title, content_html) {

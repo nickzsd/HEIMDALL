@@ -1,11 +1,3 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #212121;
-    color: #fff;
-}
-
 .appointment_selections{
     display: flex;
     flex-direction: column;
@@ -20,59 +12,21 @@ body {
     color: gold
 }
 
-.window_header {
-    background-color: #333;
-    color: #f1c40f;
-    padding: 10px 15px;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.window_controls span {
-    cursor: pointer;
-    margin-left: 10px;
-    color: #f1c40f;
-}
-
-.window_controls span:hover {
-    color: #fff;
-}
-
-.window_content {
-    padding: 20px;
-    background-color: #2c2c2c;
-    border-radius: 6px;
-}
-
 .time_entry_grid {
     border: 1px solid #444;
     padding: 20px;
     background-color: #333;
     border-radius: 10px;
     margin-bottom: 25px;
+    height: 100%;
 }
 
-form textarea {
-    display: block;
-    width: 100%;
+.time_entry_grid textarea{
     max-width: 100%;
-    margin-bottom: 12px;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #555;
-    background-color: #444;
-    color: #fff;
-    font-size: 1rem;
-    box-sizing: border-box;
 }
 
-form input[type="text"],
-form input[type="time"],
-form input[type="date"] {
+.time_entry_grid textarea,
+.time_entry_grid input{
     display: block;
     width: 100%;
     margin-bottom: 12px;
@@ -80,15 +34,13 @@ form input[type="date"] {
     border-radius: 8px;
     border: 1px solid #555;
     background-color: #444;
-    color: #fff;
+    color: #ffffff;
     font-size: 1rem;
-    box-sizing: border-box;    
+    box-sizing: border-box; 
 }
 
-form textarea:focus,
-form input[type="text"]:focus,
-form input[type="time"]:focus,
-form input[type="date"]:focus {
+.time_entry_grid textarea:focus,
+.time_entry_grid input:focus{
     border-color: #f1c40f;
     background-color: #555;
 }
@@ -152,62 +104,4 @@ form input[type="date"]:focus {
 
 .entry_duration {
     color: #f1c40f;
-}
-
-@media screen and (max-width: 768px) {
-    .time_controls {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    #start_timer_btn,
-    #activity_btn {
-        width: 100%;
-        margin-top: 10px;
-    }
-
-    .saved_entries_grid {
-        padding: 12px;
-    }
-
-    .entry_card {
-        padding: 10px;
-    }
-
-    form textarea,
-    form input[type="text"],
-    form input[type="time"],
-    form input[type="date"] {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    body {
-        padding: 10px;
-    }
-
-    .window_header {
-        font-size: 0.9rem;
-    }
-
-    .time_entry_grid h2 {
-        font-size: 1.2rem;
-    }
-
-    form textarea,
-    form input[type="text"],
-    form input[type="time"],
-    form input[type="date"] {
-        padding: 8px;
-    }
-
-    .entry_card {
-        padding: 8px;
-    }
-
-    #start_timer_btn {
-        padding: 10px;
-    }
 }
