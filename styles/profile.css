@@ -58,6 +58,7 @@
 	appearance: none;          
 	-webkit-appearance: none;
 	-moz-appearance: none; 
+	margin-bottom: 10px;
 }
 
 .role_selector:focus {
@@ -132,4 +133,25 @@
 
 .form_input.small {
 	width: 60%;
+}
+
+.profile_footer {
+	display: flex;   
+}
+
+.profile_footer button {
+	background-color: #000;
+	color: gold;
+	border: none;
+	padding: 8px 16px;
+	font-weight: bold;
+	border-radius: 15px;
+	cursor: pointer;
+	transition: background 0.3s;  
+	margin-left: 4rem;  
+	width: 150px;
+}
+
+.profile_footer button:hover {
+	background-color: #333;
 }

@@ -2,17 +2,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Portal Heimdall</title>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <link rel="icon" type="image/png" href="../icons/Heindall/heindall_gold.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <script src="../global/vars.js"></script>  
+
     <link rel="stylesheet" href="../styles/menu.css"    type = "text/css" media = "screen"/>
     <link rel="stylesheet" href="../styles/profile.css" type = "text/css" media = "screen"/>
     <link rel="stylesheet" href="../styles/tickets.css" type = "text/css" media = "screen"/>
     <link rel="stylesheet" href="../styles/config.css"  type = "text/css" media = "screen"/>
     <link rel="stylesheet" href="../styles/appoitments.css" type = "text/css" media = "screen"/>
-    <script type="module" src="../javascript/menuFunctions.js"></script>
-    <script type="module" src="../javascript/appoitments.js"></script>  
-    <script src="../javascript/tickets.js"></script>  
-    <script src="../javascript/menuscreen.js"></script>  
+    <link rel="stylesheet" href="../styles/userlist.css" type = "text/css" media = "screen"/>
+
+    <script type="module" src="../frontend/menuFunctions.js"></script>
+    <script type="module" src="../frontend/appoitments.js"></script>  
+    <script type="module" src="../frontend/userlistfunctions.js"></script>      
+    <script type="module" src="../frontend/menuscreen.js"></script>  
+    <script type="module" src="../frontend/modalLOG.js"></script>  
+    <script src="../frontend/tickets.js"></script>      
 </head>
 <body>
     <canvas id="background_canvas"></canvas>
@@ -25,5 +33,19 @@
     
     <div id="window_container"></div>
         <div id="minimized_windows_dock"></div>
+
+    <div id="custom_modal" class="modal_hidden">
+        <div class="modal_overlay"></div>
+        <div class="modal_box">
+            <p id="modal_message">Mensagem</p>
+            <div class="modal_actions" id="modal_buttons">
+                <button id="modal_confirm_btn">Confirmar</button>
+                <button id="modal_cancel_btn">Cancelar</button>
+            </div>
+        </div>
+    </div>
+          
+
+          
 </body>
 </html>

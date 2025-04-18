@@ -162,6 +162,12 @@ body {
     max-width: 980px;
 }
 
+.window_user_list{
+    max-height: 500px;
+    max-width: 500px;
+    overflow: hidden;
+}
+
 .window_header {
     background-color: #333;
     color: #f1c40f;
@@ -235,3 +241,76 @@ body {
     background-color: whitesmoke;
     color: black;
 }
+
+.modal_hidden {
+    display: none;
+  }
+  
+  #custom_modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 9999;
+    font-family: sans-serif;
+  }
+  
+  .modal_overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  
+  .modal_box {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px 20px;
+    width: 340px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    border: 2px solid #d4af37; /* dourado */
+  }
+  
+  .modal_box p {
+    font-size: 16px;
+    color: #111;
+    margin-bottom: 20px;
+  }
+  
+  .modal_actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+  
+  .modal_actions button {
+    padding: 8px 18px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+  
+  #modal_confirm_btn {
+    background-color: #d4af37; /* dourado */
+    color: #000;
+  }
+  
+  #modal_confirm_btn:hover {
+    background-color: #c49c26;
+    transform: scale(1.03);
+  }
+  
+  #modal_cancel_btn {
+    background-color: #000000;
+    color: #fff;
+  }
+  
+  #modal_cancel_btn:hover {
+    background-color: #222;
+    transform: scale(1.03);
+  }
+  
