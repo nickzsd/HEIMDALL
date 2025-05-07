@@ -1,17 +1,47 @@
-import { create_window, close_window } from "../frontend/menuFunctions.js";
-import {confirmModal, warningModal} from '../frontend/modalLOG.js'
+import { create_window, close_window } from "../functions/menuFunctions.js";
+import { FillUS } from "../functions/menuscreen.js";
+import {confirmModal, warningModal} from '../messages/modalLOG.js'
 
 export function setfunctions() {   
     document.getElementById('remove_user_btn').addEventListener('click', () => {
         const checkboxes = document.querySelectorAll('.user_checkbox:checked');
-        const idsSelecionados = Array.from(checkboxes).map(cb => cb.dataset.id);
-    
+        const idsSelecionados = Array.from(checkboxes).map(cb => cb.dataset.id);                    
+
         if (idsSelecionados.length === 0) {
-        alert("Selecione ao menos um usuário para remover.");
-        return;
+            warningModal("Selecione ao menos um usuário para remover.");                            
+            return;
         }
-        
-        console.log("IDs a excluir:", idsSelecionados);
+                
+        const users = idsSelecionados.join(",");
+
+        confirmModal(`Deseja Realmente deletar os IDs: ${users}`, users).then((confirmed) => {
+            if (confirmed) {
+                const grid = document.getElementById('user_grid_body');
+                while (grid.firstChild) {
+                    grid.removeChild(grid.firstChild);
+                }  
+                fetch('http://localhost:3000/delete_from_excel', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ids: idsSelecionados })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        warningModal("Registros deletados com sucesso!");                                                                                                                      
+                    } else {
+                        warningModal("Erro ao deletar: " + data.message);
+                    }
+                })
+                .catch(err => {
+                    warningModal("Erro ao deletar registros.");
+                    console.error(err);
+                });  
+                FillUS();                             
+            }
+        });        
     });
 
     document.getElementById('add_user_btn').addEventListener('click', () => {
@@ -20,7 +50,7 @@ export function setfunctions() {
             close_window(windowPF);
         }
         window.openType.type = 2;
-        create_window('profile', ('Novo Usuário'), perfil_window_html); 
+        create_window('profile', 'Novo Usuário', perfil_window_html); 
         
         const fotter = document.querySelector('.profile_footer');
         const btn = document.createElement('button');
@@ -55,18 +85,19 @@ export function setfunctions() {
                 role: roleSelect.value
             };
                         
-            fetch('/add-to-excel', {
+            fetch('http://localhost:3000/add_to_excel', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newuser)
             })
             .then(res => res.json())
             .then(data => {
-                if (data.success) {
-                    successModal(data.message);
-                } else {
-                    warningModal('Erro ao adicionar no Excel!');
+                if (data.success){ 
+                    warningModal(`Usuario ${UsernameInput.value} adicionado com sucesso!`);
+                    close_window(document.getElementById('profile')); 
                 }
+                else 
+                    warningModal('Erro ao adicionar no Excel!');                
             })
             .catch(err => {
                 console.error(err);

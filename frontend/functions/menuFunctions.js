@@ -1,5 +1,5 @@
-import { setfunctions } from "../frontend/userlistfunctions.js";
-import {confirmModal, warningModal} from '../frontend/modalLOG.js'
+import { setfunctions } from "../functions/userlistfunctions.js";
+import {confirmModal, warningModal} from '../messages/modalLOG.js'
 
 const window_container = document.getElementById('window_container');
 const minimized_dock = document.getElementById('minimized_windows_dock');
@@ -194,16 +194,19 @@ export function close_window(win) {
     const minimized_icon = minimized_dock.querySelector(`.minimized_icon[data-type="${win.dataset.type}"]`);
     if (minimized_icon) minimized_icon.remove();
 
+    console.log('entra');
+
     if(win.id == "user_list")
         window.openType.type = 0;
 
     if(win.id == "profile" && window.openType.type == 2){        
-        confirmModal("Deseja mesmo sair sem salvar??", () => {
-            warningModal("Novo registro cancelado!", () => {
-                console.log("Registro cancelado.");
-                win.remove(); 
-            });
+        confirmModal("Deseja mesmo sair sem salvar??").then((confirmed) => {
+            if (confirmed) {
+                warningModal("Novo registro cancelado!");
+                win.remove();
+            }
         });
+        
         return; 
     }
 
