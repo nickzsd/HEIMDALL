@@ -79,12 +79,14 @@ const perfil_window_html = `
       <option value="employee">Funcionário</option>
       <option value="company">Cliente</option>
     </select>
-    <p class="profile_label">Função</p>
-    <select class="role_selector" id="function">
-      <option value="gestor">Gestor</option>
-      <option value="dev">Desenvolvedor</option>
-      <option value="Tecnico">Tecnico</option>      
-    </select>
+    <div id="PF_Function" class="profile_function" style="display: none;">
+      <p class="profile_label">Função</p>
+      <select class="role_selector" id="function">
+        <option value="gestor">Gestor</option>
+        <option value="dev">Desenvolvedor</option>
+        <option value="Tecnico">Tecnico</option>      
+      </select>
+    </div>
     <p class="profile_label">descrição</p>
     <div class="service_wrapper">
       <textarea class="service_type" id="service_type" placeholder="Descrição / Observações"></textarea>

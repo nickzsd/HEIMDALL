@@ -1,10 +1,7 @@
 import { create_window, close_window } from "../frontend/menuFunctions.js";
 
 if(document.querySelector('.window_profile')){
-    const windowProfile = document.querySelector('.window_profile');
-
-    const form = document.querySelector('.form_container');
-    console.log(form);
+    const windowProfile = document.querySelector('.window_profile');            
 
     windowProfile.addEventListener('resize', () => {
         const width    = windowProfile.offsetWidth;
@@ -30,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             switch(id)
             {
                 case 'PF':
-                    const form = document.querySelector('.form_container');
+                    const form = document.querySelector('.form_container');                                        
                     
                     if(window.currentUserData.function != 'gestor'){
                         if (form) {
@@ -77,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <div>${user.user}</div>
                                     <div>${user.user_name}</div>
                                 `;
- 
                                 row.addEventListener('dblclick', () => {
                                     window.openType.type = 1;
                                     const windowPF = document.getElementById('profile')
@@ -111,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     
                                     if(user.register_type != 'cliente')
                                         userfunction.selectedIndex = (user.function === 'gestor')        ? 0 : 
-                                                                     (user.function === 'Desenvolvedor') ? 1 : 2;    
+                                                                    (user.function === 'Desenvolvedor') ? 1 : 2;    
                                     else
                                         userfunction.style.display = 'none';
 
@@ -127,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 row.addEventListener('click', () => {
                                     const checkbox = row.querySelector('.user_checkbox');
                                     if (checkbox) checkbox.checked = !checkbox.checked;
-                                  });
+                                });
 
                                 grid.appendChild(row);
                             });

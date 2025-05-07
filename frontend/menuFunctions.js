@@ -9,7 +9,7 @@ let z_index_counter = 10;
 document.getElementById('menu_toggle').addEventListener('mouseover', () => {
     const sidebar = document.getElementById('sidebar_menu');
     const menuToggle = document.getElementById('menu_toggle');
-  
+
     sidebar.classList.add('show');
     menuToggle.classList.add('hide'); 
 });
@@ -17,7 +17,7 @@ document.getElementById('menu_toggle').addEventListener('mouseover', () => {
 document.getElementById('sidebar_menu').addEventListener('mouseleave', () => {
     const sidebar = document.getElementById('sidebar_menu');
     const menuToggle = document.getElementById('menu_toggle');
-  
+
     sidebar.classList.remove('show');
     menuToggle.classList.remove('hide'); 
 });
@@ -25,26 +25,26 @@ document.getElementById('sidebar_menu').addEventListener('mouseleave', () => {
 function animateBackground() {
     const canvas = document.getElementById('background_canvas');
     const ctx = canvas.getContext('2d');
-  
+
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
-  
+
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
-  
+
     const stars = Array.from({ length: 120 }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         r: Math.random() * 1.5,
         speed: Math.random() * 0.5 + 0.2
     }));
-  
+
     function draw() {
         ctx.fillStyle = 'rgba(15, 10, 30, 1)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
+
         const gradient = ctx.createRadialGradient(
             canvas.width / 2, canvas.height / 2, 100,
             canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) * 0.8
@@ -54,7 +54,7 @@ function animateBackground() {
         gradient.addColorStop(1, 'rgba(0, 0, 0, 0.95)');
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
+
         stars.forEach(star => {
             ctx.beginPath();
             ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
@@ -67,13 +67,13 @@ function animateBackground() {
             star.x = Math.random() * canvas.width;
             }
         });
-  
+
         requestAnimationFrame(draw);
     }
-  
+
     draw();
 }
-  
+
 function renderMenu() {
     const sidebar = document.getElementById('sidebar_menu');
     sidebar.innerHTML = '';
@@ -142,10 +142,18 @@ export function create_window(type, title, content_html) {
         setfunctions();
     }
     else if(win.id == "profile"){
-        if(window.currentUserData.register_type == 'cliente'){
-            const roleSelect = document.getElementById('user_role');
-            roleSelect.style.display = 'none';
-        }
+        const roleSelect = document.getElementById('PF_Function');
+        roleSelect.style.display = (window.currentUserData.register_type == 'cliente')
+                                    ? 'none' : 'block';        
+    
+        document.getElementById('user_role').addEventListener('change', function () {
+            const selectedValue = this.value; // 'this' é o select
+            const functionDiv = document.getElementById('PF_Function');
+            
+            functionDiv.style.display = (selectedValue === 'company')
+                ? 'none'
+                : 'block';
+        });                                      
     }
 	
 	const init_func = window[`init_${type}_window`];
