@@ -192,9 +192,7 @@ function restore_window(win, icon) {
 
 export function close_window(win) {
     const minimized_icon = minimized_dock.querySelector(`.minimized_icon[data-type="${win.dataset.type}"]`);
-    if (minimized_icon) minimized_icon.remove();
-
-    console.log('entra');
+    if (minimized_icon) minimized_icon.remove();    
 
     if(win.id == "user_list")
         window.openType.type = 0;

@@ -3,19 +3,30 @@ import { FillUS } from "../functions/menuscreen.js";
 import {confirmModal, warningModal} from '../messages/modalLOG.js'
 
 export function setfunctions() {   
-    document.getElementById('remove_user_btn').addEventListener('click', () => {
+    document.getElementById('remove_user_btn').addEventListener('click', (e) => {
+        e.preventDefault();
+
         const checkboxes = document.querySelectorAll('.user_checkbox:checked');
         const idsSelecionados = Array.from(checkboxes).map(cb => cb.dataset.id);                    
 
         if (idsSelecionados.length === 0) {
             warningModal("Selecione ao menos um usuário para remover.");                            
             return;
+        } 
+        
+        for (let i = 0; i < idsSelecionados.length; i++) {
+            const _user = idsSelecionados[i];
+            if(_user == window.currentUserData.user)
+            {
+                warningModal("Você não pode deletar seu próprio usuário!");                            
+                return;
+            }
         }
                 
-        const users = idsSelecionados.join(",");
+        const users = idsSelecionados.join(",");        
 
         confirmModal(`Deseja Realmente deletar os IDs: ${users}`, users).then((confirmed) => {
-            if (confirmed) {
+            if (confirmed) {                
                 const grid = document.getElementById('user_grid_body');
                 while (grid.firstChild) {
                     grid.removeChild(grid.firstChild);
@@ -44,7 +55,9 @@ export function setfunctions() {
         });        
     });
 
-    document.getElementById('add_user_btn').addEventListener('click', () => {
+    document.getElementById('add_user_btn').addEventListener('click', (e) => {
+        e.preventDefault();
+
         const windowPF = document.getElementById('profile')        
         if(windowPF != null){
             close_window(windowPF);
@@ -56,7 +69,9 @@ export function setfunctions() {
         const btn = document.createElement('button');
         btn.id = 'update_user_btn';
         btn.textContent = 'Salvar';
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+
             const roleSelect    = document.getElementById('user_role');
             const serviceInput  = document.getElementById('service_type');
             const nameInput     = document.getElementById('user_name');
@@ -93,8 +108,14 @@ export function setfunctions() {
             .then(res => res.json())
             .then(data => {
                 if (data.success){ 
+                    const grid = document.getElementById('user_grid_body');
+                    while (grid.firstChild) {
+                        grid.removeChild(grid.firstChild);
+                    }  
+                    window.openType.type = 1
                     warningModal(`Usuario ${UsernameInput.value} adicionado com sucesso!`);
                     close_window(document.getElementById('profile')); 
+                    FillUS()
                 }
                 else 
                     warningModal('Erro ao adicionar no Excel!');                
