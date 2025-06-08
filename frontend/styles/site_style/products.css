@@ -1,0 +1,164 @@
+.container_products{
+    width: 100%;
+    height: 500px;    
+    background-color: var(--heindall_cleancolor);
+}
+
+.container_t{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title_products{      
+    display: inline-block;
+    font-weight: bold;
+    transition: all 1s ease; 
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    border-top: 3px solid var(--heindall_maincolor); 
+    border-bottom: 3px solid var(--heindall_maincolor);
+    color: var(--background);
+    position: relative;  
+}
+
+.products_wrapper {
+    text-align: center;
+    justify-content: center;
+    display: flex;  
+    align-items: center;
+}
+
+.product_card {    
+    margin-top: 3rem;    
+    border: 6px solid black;
+    height: auto;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 280px;
+}
+
+.product_title {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.BT{     
+    display: inline-block;
+    transition: all 1s ease;    
+    border-bottom: 2px solid var(--bifrost_cleancolor);
+    position: relative;  
+}
+
+.PH{
+    display: inline-block;
+    transition: all 1s ease;    
+    border-bottom: 2px solid var(--heindall_cleancolor);
+    position: relative;  
+}
+
+.product_logo {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background);
+    transition: transform 0.3s ease; 
+    border-radius: 20px;
+}
+
+.product_logo:hover {
+    transform: scale(0.9); 
+}
+
+.product_img{
+    width: 100%;
+    height: 300px;    
+    object-fit: contain;
+}
+
+.product_modal {    
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); 
+    backdrop-filter: blur(10px);   
+    -webkit-backdrop-filter: blur(10px);  
+    z-index: 9999; 
+    justify-content: center;
+    align-items: center;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+body.modal-open .section_info,
+body.modal-open .hover_scale {
+    pointer-events: none;
+}
+
+.product_modal_content {
+    pointer-events: auto;
+    max-width: 600px;
+    padding: 40px;
+    background-color: var(--heindall_cleancolor);
+    border-radius: 20px;
+    box-shadow: 0 0 10px var(--heindall_darkcolor);
+    text-align: center;
+    position: relative;
+}
+
+.close_modal {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.Container_Modal_btn{
+    display: flex;
+    margin-top: 2rem;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.btn_bt{
+    border: 2px solid var(--bifrost_maincolor);
+    background-color: var(--background);
+}
+
+.btn_ph{
+    border: 2px solid var(--heindall_maincolor);
+    background-color: var(--background);
+}
+
+.btn_bt:hover{
+    background-color: var(--bifrost_maincolor);
+}
+
+.btn_ph:hover{
+    background-color: var(--heindall_maincolor);
+}
+
+.modal_btn{
+    font-size: 13px;    
+    border-radius: 10px;  
+    color: white;  
+    width: 30%;
+    height: 1.5rem;
+    transition: 0.6s;
+}
+
+.bifrost{
+    background: linear-gradient(to bottom, var(--bifrost_maincolor), var(--bifrost_midcolor));
+}
+
+.portal_heimdall{
+    background: linear-gradient(to bottom, var(--heindall_maincolor), var(--heindall_subcolor));
+}

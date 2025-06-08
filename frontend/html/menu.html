@@ -1,38 +1,57 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>Portal Heimdall</title>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-    <link rel="icon" type="image/png" href="../icons/Heindall/heindall_gold.png">
+    <link rel="icon" type="image/png" href="../icons/Heindall/heindall_gold.png">    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <script src="../global/vars.js"></script>  
+    <script src="../classes/global/vars.js"></script>
 
-    <link rel="stylesheet" href="../styles/menu.css"    type = "text/css" media = "screen"/>
-    <link rel="stylesheet" href="../styles/profile.css" type = "text/css" media = "screen"/>
-    <link rel="stylesheet" href="../styles/tickets.css" type = "text/css" media = "screen"/>
-    <link rel="stylesheet" href="../styles/config.css"  type = "text/css" media = "screen"/>
-    <link rel="stylesheet" href="../styles/appoitments.css" type = "text/css" media = "screen"/>
-    <link rel="stylesheet" href="../styles/userlist.css" type = "text/css" media = "screen"/>
+    <link rel="stylesheet" href="../styles/menu_style/appoitments.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../styles/menu_style/userlist.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../styles/menu_style/profile.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../styles/menu_style/tickets.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../styles/menu_style/config.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../styles/menu_style/menu.css" type="text/css" media="screen" />
 
-    <script type="module" src="../frontend/functions/menuFunctions.js"></script>
-    <script type="module" src="../frontend/functions/appoitments.js"></script>  
-    <script type="module" src="../frontend/functions/userlistfunctions.js"></script>      
-    <script type="module" src="../frontend/functions/menuscreen.js"></script>  
-    <script type="module" src="../frontend/messages/modalLOG.js"></script>  
-    <script src="../frontend/functions/tickets.js"></script>      
+    <script type="module" src="../classes/functions/notificationsfunctions.js"></script>
+    <script type="module" src="../classes/functions/appoitmentsfunctions.js"></script>
+    <script type="module" src="../classes/functions/userlistfunctions.js"></script>
+    <script type="module" src="../classes/functions/ticketsfunctions.js"></script>
+    <script type="module" src="../classes/functions/configfunctions.js"></script>    
+    <script type="module" src="../classes/functions/menuFunctions.js"></script>
+    <script type="module" src="../classes/functions/menuscreen.js"></script>
+    <script type="module" src="../classes/messages/modalLOG.js"></script>    
 </head>
 <body>
-    <canvas id="background_canvas"></canvas>
-    <div class="company_logo_container">
-        <img src="../icons/Heindall/heindall_white.png" alt="Company Logo" class="logo_default">
-        <img src="../icons/Heindall/heindall_gold.png" alt="Company Logo Hover" class="logo_hover">
-    </div>      
-    <div id="menu_toggle"><i class="fas fa-bars"></i></div>
+    <canvas id="background_canvas"></canvas>    
+    <div id="menu_toggle">
+        <i class="fas fa-bars"></i>
+        <span class="notification_dot" id="menu_notification_dot"></span>
+    </div>
     <div id="sidebar_menu"></div>
-    
-    <div id="window_container"></div>
-        <div id="minimized_windows_dock"></div>
+
+    <div id="menu_toggle_hist"><i class="fa-solid fa-clock-rotate-left"></i></div>
+    <div id="sidebar_menu_hist"></div>
+
+    <div id="window_container">
+        <div class="company_logo_container">
+            <svg id="heindall_logo" width="285.75mm" height="285.75mm" viewBox="0 0 285.75 285.75" version="1.1" id="svg1" xml:space="preserve"
+                xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+                <defs id="defs1" />
+                <rect style="fill:none;stroke-width:0.712533;stroke-linecap:round;stroke-linejoin:round" id="rect2"
+                    width="285.75" height="285.75" x="-1.6940659e-21" y="-1.0587912e-22" />
+                <g id="g4" transform="matrix(2.1157688,0,0,2.1157688,-80.678635,-51.037649)">
+                    <path id="path3"
+                        d="m 67.260343,24.651599 c -27.8107,12.432968 -31.562135,49.702809 3.356385,62.836989 l -0.134359,31.418752 22.293215,25.18606 0.80098,-39.95518 c -8.54946,-1.1766 -13.42796,-5.517972 -14.63528,-13.024012 l 19.87165,6.98149 c 0.40916,5.777022 0.18545,11.427582 -0.67127,16.951422 l 7.518916,3.9274 7.51892,-3.9274 c -0.85672,-5.52384 -1.08044,-11.1744 -0.67128,-16.951422 l 19.87166,-6.98149 c -1.20732,7.50604 -6.08582,11.847412 -14.63528,13.024012 l 0.80098,39.95518 22.29321,-25.18606 -0.13435,-31.418752 c 34.91852,-13.13418 31.1676,-50.404021 3.3569,-62.836989 16.4267,23.555866 5.20276,35.684749 -8.45892,41.488429 10.99101,21.6862 -18.90133,17.50793 -29.94184,25.25582 C 94.620074,83.647958 64.728249,87.826228 75.719259,66.140028 62.057579,60.336348 50.833643,48.207465 67.260343,24.651599 Z m 38.400237,96.672651 c -2.64064,0.17903 -5.46023,0.85018 -8.458916,2.01383 l -0.93431,24.7003 9.393226,10.61228 9.39322,-10.61228 -0.93431,-24.7003 c -2.99869,-1.16365 -5.81827,-1.8348 -8.45891,-2.01383 z" />
+                    <path id="path4"
+                        d="m 105.66071,58.011978 c -17.165796,0 -29.574156,11.45305 -28.095646,17.7517 0.80424,3.42616 17.56622,5.28999 28.096476,10.22728 10.53026,-4.93729 27.29224,-6.80112 28.09648,-10.22728 1.47851,-6.29865 -10.93151,-17.7517 -28.09731,-17.7517 z" />
+                </g>
+            </svg>
+        </div>
+    </div>
 
     <div id="custom_modal" class="modal_hidden">
         <div class="modal_overlay"></div>
@@ -43,6 +62,8 @@
                 <button id="modal_cancel_btn">Cancelar</button>
             </div>
         </div>
-    </div>
+    </div>   
+    
+    <script src="../libs/tinymce/js/tinymce/tinymce.min.js"></script>
 </body>
 </html>

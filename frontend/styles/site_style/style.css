@@ -1,0 +1,201 @@
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    margin: 0; 
+    font-family: Arial, sans-serif; 
+    scrollbar-width: none;    
+    -ms-overflow-style: none; 
+}
+
+::-webkit-scrollbar {
+    display: none;     
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: var(--background);
+    border-bottom: 3px solid var(--heindall_maincolor);
+}
+
+.fixed{    
+    top: 0;
+    position: fixed;
+    width: 97%;
+    z-index: 900;
+}
+
+.background_banner{    
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.logo, .company_name, .menu_toggle {
+    z-index: 901;
+    flex: 1;
+    text-align: center;
+}
+
+.company_header_logo{
+    height: 40px;
+}
+
+.logo { 
+    text-align: left; 
+}
+
+.menu_toggle { 
+    text-align: right; 
+    cursor: pointer; 
+    font-size: 24px; 
+    color: var(--heindall_maincolor);
+}
+
+.company_name {
+    font-weight: bold;
+    color: gold;    
+}
+
+.carousel {
+    background-image: url('/icons/background/peixe.jpeg');  
+    margin-top: 65px;
+    position: relative;
+    overflow: hidden;        
+    touch-action: pan-y;
+}
+
+.carousel_images {     
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+}
+
+.carousel_images img {      
+    width: 100%;     
+    flex-shrink: 0;
+    object-fit:fill;     
+}
+
+.indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.indicator.active {
+    background-color: rgba(0,0,0,0.6);
+}
+
+.dropdown_menu {
+    position: fixed; 
+    top: 65px;
+    width: 100%;
+    z-index: 9999;
+    background-color: var(--heindall_cleancolor); 
+    display: none;
+    padding: 20px;
+    border-top: 2px solid var(--heindall_maincolor);
+    border-bottom: 1px solid var(--heindall_maincolor);;
+}
+
+.dropdown_menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown_menu li {
+    padding: 8px 0;
+    font-size: 16px;
+}
+
+.menu-open .dropdown_menu {
+    display: block;
+}
+
+.menu_link {
+    display: inline-block;
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    position: relative;
+}
+
+.menu_link::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: currentColor;
+    left: 0;
+    bottom: -3px;
+    transition: width 0.3s ease;
+}
+
+.menu_link:hover {
+    transform: scale(1.05);
+}
+
+.menu_link:hover::after {
+    width: 100%;
+}
+
+.section_info{
+    transition: transform 1.2s;
+}
+
+.hover_scale{
+    transition: transform 1.2s;
+}
+
+.section_info:hover{
+    transform: scale(1.1);
+}
+
+.section_info:hover .hover_scale{
+    transform: scale(0.9);
+}
+
+body.modal-open .section_info,
+body.modal-open .hover_scale {
+    transition: ease;
+    transform: none !important;
+}
+
+@media(max-width: 600px) {
+    .carousel {        
+        height: 300px;         
+    }
+    .company-name {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .fixed{
+        width: 98%;
+    }
+    
+    .heimdall {
+        margin-left: 200px;
+        margin-right: 200px;
+        border-radius: 10px;
+    }
+}

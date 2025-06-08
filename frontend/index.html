@@ -1,21 +1,24 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>HEIMDALL</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">     
     <link rel="icon" type="image/png" href="icons/Heindall/heindall_gold.png">
-    <link rel = "stylesheet" href = "styles/colors.css" type = "text/css" media = "screen"/> 
-    <link rel = "stylesheet" href = "styles/style.css" type = "text/css" media = "screen"/>     
-    <link rel = "stylesheet" href = "styles/about.css" type = "text/css" media = "screen"/>     
-    <link rel = "stylesheet" href = "styles/products.css" type = "text/css" media = "screen"/>     
-    <link rel = "stylesheet" href = "styles/service.css" type = "text/css" media = "screen"/>     
-    <link rel = "stylesheet" href = "styles/contact.css" type = "text/css" media = "screen"/>     
-    <link rel = "stylesheet" href = "styles/footer.css" type = "text/css" media = "screen"/>     
-    <script type="module" src="frontend/Site/headerFunctions.js"></script>      
-    <script type="module" src="frontend/Site/products.js"></script>  
-    <script type="module" src="frontend/Site/contact.js"></script>   
-    <script src="frontend/Site/footerFunctions.js"></script>    
-    <script src="frontend/Site/aboutFunctions.js"></script>      
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel = "stylesheet" href = "styles/general_style/colors.css" type = "text/css" media = "screen"/>          
+    <link rel = "stylesheet" href = "styles/site_style/products.css" type = "text/css" media = "screen"/>     
+    <link rel = "stylesheet" href = "styles/site_style/service.css" type = "text/css" media = "screen"/>     
+    <link rel = "stylesheet" href = "styles/site_style/contact.css" type = "text/css" media = "screen"/>     
+    <link rel = "stylesheet" href = "styles/site_style/footer.css" type = "text/css" media = "screen"/>
+    <link rel = "stylesheet" href = "styles/site_style/style.css" type = "text/css" media = "screen"/>     
+    <link rel = "stylesheet" href = "styles/site_style/about.css" type = "text/css" media = "screen"/>
+         
+    <script type="module" src="./classes/Site/headerFunctions.js"></script>      
+    <script type="module" src="./classes/Site/products.js"></script>  
+    <script type="module" src="./classes/Site/contact.js"></script>   
+    <script src="./classes/Site/footerFunctions.js"></script>    
+    <script src="./classes/Site/aboutFunctions.js"></script>      
 </head>
 <body>
 
@@ -40,14 +43,14 @@
 
 <div class="carousel" id="carousel">
     <div class="carousel_images" id="carouselImages">
-        <img class="background_banner" src="icons/background/Bombardilo.jpeg" alt="Imagem 1" draggable="false">
-        <img class="background_banner" src="icons/background/Tralala.jpeg" alt="Imagem 2" draggable="false">
-        <img class="background_banner" src="icons/background/peixe.jpeg" alt="Imagem 3" draggable="false">
+        <img class="background_banner" src="icons/background/Heindall_banner.png" alt="Imagem 1" draggable="false">
+        <img class="background_banner" src="icons/background/BifrostBKG.jpg"      alt="Imagem 2" draggable="false">
+        <img class="background_banner" src="icons/background/bfrost_banner.png"   alt="Imagem 3" draggable="false">        
     </div>
     <div class="indicators" id="indicators">
         <span class="indicator" onclick="goToSlide(0)"></span>
         <span class="indicator" onclick="goToSlide(1)"></span>
-        <span class="indicator" onclick="goToSlide(2)"></span>
+        <span class="indicator" onclick="goToSlide(2)"></span>        
     </div>
 </div>
 
@@ -177,8 +180,8 @@
         <div class="social_section">
             <h3>Redes sociais</h3>
             <div class="icons">
-                <a href="#"><img src="icons/socialmedia/Instagram.png" alt="Instagram" /></a>
-                <a href="#"><img src="icons/socialmedia/linkedin.png" alt="LinkedIn" /></a>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-linkedin"></i>
             </div>
         </div>
         <form class="contact_form">

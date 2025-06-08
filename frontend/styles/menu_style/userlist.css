@@ -1,0 +1,165 @@
+.user_grid_container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px auto;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  max-height: 400px;
+}
+
+.user_grid_body{
+  flex: 2;
+  overflow-y: auto;
+  border: 1px solid #444;
+  background-color: #1b1b1b;
+  border-radius: 6px;
+  max-height: 820px; 
+}
+
+.user_grid_header,
+.user_grid_row {
+  display: grid;  
+  padding: 10px;
+  border-bottom: 1px solid #555;
+  background-color: #2c2c2c;
+  color: #fff;  
+
+  user-select: none;
+  grid-template-columns: 0.5fr 1.6fr 1.6fr;
+}
+
+.user_grid_header_NF,
+.user_grid_row_NF {
+  display: grid;  
+  padding: 10px;
+  border-bottom: 1px solid #555;  
+  background-color: #2c2c2c;
+  color: #fff;  
+
+  user-select: none;
+  grid-template-columns: 0.5fr 1.8fr 1.8fr 3fr;
+}
+
+.user_grid_header_NF {
+  background-color: #1e1e1e;
+  font-weight: bold;
+  color: gold;
+}
+
+.user_grid_row_NF {
+  cursor: grab;  
+  transition: transform 0.4s, opacity 2s;  
+}
+
+.user_grid_header {
+  background-color: #1e1e1e;
+  font-weight: bold;
+  color: gold;
+}
+
+.user_grid_row {
+  cursor: grab;  
+  transition: transform 0.4s, opacity 2s;  
+}
+
+.user_grid_row:hover {
+  background-color: #3d3d3d;
+}
+
+.action_pane_users {
+  display: flex;
+  margin-bottom: 5px;
+  gap: 20px;
+}
+
+.user_grid_button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 0.875rem;
+  border: none;
+  height: 30px;
+}
+
+.user_grid_button i {
+  font-size: 1rem;
+  color: gold;
+}
+
+.user_grid_button span {
+  white-space: nowrap;
+}
+
+.user_grid_button:hover {
+  background-color: #959595;
+}
+
+.section_title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: gold;
+  font-size: 1.5rem;
+}
+
+.user_row:nth-child(even) {
+  background-color: #2a2a2a;
+}
+
+.user_row div {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.removeline-animation {
+  animation: removeline 1s forwards;
+}
+
+.filter_body{  
+  margin-bottom: 0.7rem  
+}
+
+.filter_body span{
+  color: gold;
+}
+
+.filter_body i{
+  cursor: pointer;  
+  transition: color 0.5s;
+}
+
+.filter_body i:hover{  
+  color: gold;  
+}
+
+.filter_body i:active{
+  transition: color 0s;
+  color: #ffffff;  
+}
+
+.Filter_Input{   	
+	border: 2px solid #000000;
+	background-color: #656565;
+	color: #fff;	
+  font-size: 1rem;
+	box-sizing: border-box;
+}
+
+.Filter_Input:focus {
+	outline: none;
+}	
+
+@keyframes removeline {
+  0%   { opacity: 1; }
+  20%  { opacity: 0.8;}
+  40%  { opacity: 0.6;}
+  60%  { opacity: 0.4;}
+  80%  { opacity: 0.2;}
+  100% { opacity: 0;}    
+}
