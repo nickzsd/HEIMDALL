@@ -185,11 +185,12 @@
     font-size: 1rem;
     height: 2.5rem;
     
-    transition: background-color 0.2s ease-in-out;
+    transition: all 0.6s ease-in-out;
 }
 
 #start_timer_btn:hover {
     background-color: #218838;
+    transform: scale(0.9);    
 }
 
 .saved_entries_grid {

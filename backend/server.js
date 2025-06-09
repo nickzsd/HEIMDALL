@@ -43,6 +43,9 @@ function getTableId(id){
         case 'tickets_details':
             tablePath = './data/tickets_details.xlsx';
             break;
+        case 'records':
+            tablePath = './data/records.xlsx';
+            break;
 
         //notificação
         case 'notifications':
@@ -185,6 +188,14 @@ app.post('/find', async (req,res) => {
                 TK_row.createdDate = (new Date(excelDateToJSDate(TK_row.createdDate))).toLocaleDateString('pt-BR');
 
             return TK_row;
+        })
+    } else if (tableid == "records"){
+        json = json.map(record => {            
+            
+            if (typeof(record.refdate) == Number || typeof(record.refdate) == 'number')
+                record.refdate = (new Date(excelDateToJSDate(record.refdate))).toLocaleDateString('pt-BR');
+
+            return record;
         })
     }
     

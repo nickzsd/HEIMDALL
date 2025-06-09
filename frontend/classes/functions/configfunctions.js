@@ -1,6 +1,7 @@
 import {confirmModal, warningModal} from '../messages/modalLOG.js'
 
 import { getnextRecid } from '../utils/HDL_Utils.js'
+import { fillTickets } from './ticketsfunctions.js';
 
 export function canCloseWindow() {    
     return new Promise((resolve) => {
@@ -36,7 +37,7 @@ export function canCloseWindow() {
         resolve(true);
     });
 }
-  
+
 export function FillConfigData(){
     fillSequences();
     fillCompanys();    
@@ -254,48 +255,66 @@ export function setconfigfunctions(){
                                 data: {Recid: next_id,projId:"",refCompany:""}})
         })
         .then(res => res.json())
-        .then(data => {}) 
-            row.id        = proj.Recid;         
-            row.className = 'project_row';
-            row.innerHTML = `
-                <div><input type="checkbox" class="proj_checkbox" id="${next_id}" data-id="${next_id}"></div>
-                <div class="projId" contenteditable="true"></div>
-                <select id="company_select" class="custom_select_PJ">
-                    <option value="null">Não atribuido</option>
-                </select>
-            `;        
+        .then(data => {})   
 
-            const selection_field = row.querySelector('.custom_select_PJ')    
+        row.id        = next_id;               
+        row.className = 'project_row';
+        row.innerHTML = `
+            <div><input type="checkbox" class="proj_checkbox" id="${next_id}" data-id="${next_id}"></div>
+            <div class="projId" contenteditable="true"></div>
+            <select id="company_select" class="custom_select_PJ">
+                <option value="null">Não atribuido</option>
+            </select>
+        `;        
+
+        const selection_field = row.querySelector('.custom_select_PJ')    
+
+        fetch('http://localhost:3000/find', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },   
+            body: JSON.stringify({tableid: 'company'})     
+        })    
+        .then(response => response.json())
+        .then(data => {
+            const json = data.json 
+
+            json.forEach(company => {
+                const option = document.createElement('option');
+                option.value = company.companyId;
+                option.textContent = company.companyId;                    
+
+                selection_field.appendChild(option);
+            });
+        })
+
+        row.addEventListener('click', () => {
+            const checkbox = row.querySelector('.proj_checkbox');
+            checkbox.checked = !checkbox.checked;
 
             fetch('http://localhost:3000/find', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },   
-                body: JSON.stringify({tableid: 'company'})     
+                body: JSON.stringify({tableid: 'projects', query: {Recid: row.id}})
             })    
             .then(response => response.json())
             .then(data => {
-                const json = data.json 
-    
-                json.forEach(company => {
-                    const option = document.createElement('option');
-                    option.value = company.companyId;
-                    option.textContent = company.companyId;                    
+                window.projs.projName = data.json[0].projId
 
-                    selection_field.appendChild(option);
-                });
+                if(window.projs.projName != ""){
+                    fillprojects_tasks();
+                    document.querySelector('.projtask_div').classList.add('active');
+                }
             })
+        });
 
-            row.addEventListener('click', () => {
-                const checkbox = row.querySelector('.proj_checkbox');
-                if (checkbox) checkbox.checked = !checkbox.checked;
-            });
+        setprojline(row)
 
-            setprojline(row)
-
-            mainRow.appendChild(row)
-        })                                             
+        mainRow.appendChild(row)
+    })                                             
 
     document.getElementById('remove_project').addEventListener('click', () => {
         const checkboxes      = document.querySelectorAll('.proj_checkbox');
@@ -309,8 +328,104 @@ export function setconfigfunctions(){
         const projs_ids = idsSelecionados.join(',');         
 
         confirmModal(`Deseja realmente deletar?`).then((confirmed) => {
+            if (confirmed) {
+                document.querySelector('.projtask_div').classList.remove('active');
+
+                // Primeiro, buscamos o projId relacionado ao Recid
+                fetch('http://localhost:3000/find', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tableid: 'projects', query: { Recid: parseInt(projs_ids) } })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    const projIdToDelete = data.json[0]?.projId;
+
+                    const deleteTasks = fetch('http://localhost:3000/table_States', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            tableid: 'projects_tasks',
+                            type: 'delete',
+                            data: '',
+                            query: { projId: projIdToDelete }
+                        })
+                    });
+
+                    const deleteProject = fetch('http://localhost:3000/table_States', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            tableid: 'projects',
+                            type: 'delete',
+                            data: '',
+                            query: { Recid: parseInt(projs_ids) }
+                        })
+                    });
+
+                    Promise.all([deleteTasks, deleteProject])
+                    .then(async ([resTasks, resProject]) => {
+                        const resultProject = await resProject.json();
+
+                        if (!resultProject.success)
+                            warningModal('Erro ao remover no Excel!');
+                        
+                        fillprojects();
+                    });
+                });
+            }
+        });
+    })
+
+    document.getElementById('add_task').addEventListener('click', async () => {  
+        const mainRow = document.getElementById('task_rows')
+        
+        const row = document.createElement('div');   
+        
+        const next_id = await getnextRecid('projects_tasks');                
+
+        fetch('http://localhost:3000/table_states', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },        
+            body: JSON.stringify({tableid: 'projects_tasks',
+                                type: 'insert',
+                                data: {Recid: next_id,projId: window.projs.projName, taskname:""}})
+        })
+        .then(res => res.json())
+        .then(data => {})      
+            row.id        = next_id;             
+            row.className = 'task_row';
+            row.innerHTML = `
+                <div><input type="checkbox" class="projtask_checkbox" id="${next_id}" data-id="${next_id}"></div>
+                <div class="taskId" contenteditable="true"></div>
+            `;                                 
+
+            row.addEventListener('click', (event) => {
+                if (event.target.classList.contains('taskId')) return; // Não interfere na edição
+
+                const checkbox = row.querySelector('.projtask_checkbox');
+                if (checkbox) checkbox.checked = !checkbox.checked;
+            });
+
+            serprojtaskline(row)
+
+            mainRow.appendChild(row)
+    })                                             
+
+    document.getElementById('remove_task').addEventListener('click', () => {
+        const checkboxes      = document.querySelectorAll('.projtask_checkbox');
+        const idsSelecionados = Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.dataset.id);                 
+
+        if (idsSelecionados.length === 0) {
+            warningModal("Selecione ao menos um projeto para remover.");                            
+            return;            
+        } 
+
+        const projs_ids = idsSelecionados.join(',');         
+
+        confirmModal(`Deseja realmente deletar?`).then((confirmed) => {
             if (confirmed) {                 
-                const JsonBodyData = {tableid: 'projects',type: 'delete',data:'',query: {Recid: parseInt(projs_ids)}}
+                const JsonBodyData = {tableid: 'projects_tasks',type: 'delete',data:'',query: {Recid: parseInt(projs_ids)}}
                 fetch('http://localhost:3000/table_States', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -319,7 +434,7 @@ export function setconfigfunctions(){
                 .then(res => res.json())
                 .then(data => {
                     if (data.success)
-                        fillprojects()                                                       
+                        fillprojects_tasks()                                                    
                     else 
                         warningModal('Erro ao remover no Excel!');                
                 })
@@ -365,8 +480,8 @@ function setLineUpdate(row){
 }
 
 function setprojline(row){
-    const projIdDiv     = row.querySelector('.projId');
-    const select_Company = row.querySelector('.custom_select_PJ');     
+    const projIdDiv = row.querySelector('.projId');
+    const select    = row.querySelector('.custom_select_PJ');     
 
     function makeupdate(refid,name,selectValue){
         const JsonBodyData = {tableid: 'projects',
@@ -386,13 +501,39 @@ function setprojline(row){
     projIdDiv.addEventListener('input', () => {
         clearTimeout(row._debounceTimer);
         row._debounceTimer = setTimeout(() => {  
-            makeupdate(Number(row.id),projIdDiv.textContent,select_Company.value)        
+            makeupdate(Number(row.id),projIdDiv.textContent,select.value)        
         }, 600);
     });   
     
-    select_Company.addEventListener('change', () => {  
-        makeupdate(Number(row.id),projIdDiv.textContent,select_Company.value)
+    select.addEventListener('change', () => {  
+        makeupdate(Number(row.id),projIdDiv.textContent,select.value)
     });
+}
+
+function serprojtaskline(row){
+    const taskIddiv = row.querySelector('.taskId');    
+
+    function makeupdate(refid,name){
+        const JsonBodyData = {tableid: 'projects_tasks',
+                            type: 'update',
+                            query:{Recid: refid},
+                            data: {Recid: refid,taskname: name,projId: window.projs.projName}}        
+        
+        fetch('http://localhost:3000/table_states', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },        
+            body: JSON.stringify(JsonBodyData)
+        })
+        .then(res => res.json())
+        .then(data => {})
+    }    
+    
+    taskIddiv.addEventListener('input', () => {
+        clearTimeout(row._debounceTimer);
+        row._debounceTimer = setTimeout(() => {  
+            makeupdate(Number(row.id),taskIddiv.textContent)        
+        }, 600);
+    });   
 }
 
 //preenchimento
@@ -510,7 +651,7 @@ function fillprojects(){
       })    
     .then(response => response.json())
     .then(data => {
-        const json = data.json         
+        const json = data.json                          
 
         const mainRow = document.getElementById('project_rows')
         mainRow.innerHTML = "";
@@ -554,7 +695,26 @@ function fillprojects(){
 
             row.addEventListener('click', () => {
                 const checkbox = row.querySelector('.proj_checkbox');
-                if (checkbox) checkbox.checked = !checkbox.checked;
+                checkbox.checked = !checkbox.checked;
+
+                fetch('http://localhost:3000/find', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },   
+                    body: JSON.stringify({tableid: 'projects', query: {Recid: row.id}})
+                })    
+                .then(response => response.json())
+                .then(data => {
+                    window.projs.projName = data.json[0].projId
+
+                    if(window.projs.projName != ""){
+                        fillprojects_tasks();
+                        document.querySelector('.projtask_div').classList.add('active');
+                    }
+                    else
+                        document.querySelector('.projtask_div').classList.remove('active');
+                })
             });
 
             setprojline(row)
@@ -565,5 +725,42 @@ function fillprojects(){
 }
 
 function fillprojects_tasks(){
-    
+    //Tarefas de Projeto
+    document.getElementById('proj_title').textContent = window.projs.projName;
+
+    fetch('http://localhost:3000/find', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },   
+        body: JSON.stringify({tableid: 'projects_tasks', query: {projId: window.projs.projName}})
+      })    
+    .then(response => response.json())
+    .then(data => {
+        const json = data.json         
+
+        const mainRow = document.getElementById('task_rows')
+        mainRow.innerHTML = "";
+        
+        json.forEach(proj => {                        
+            const row = document.createElement('div');   
+            row.id        = proj.Recid;         
+            row.className = 'task_row';
+            row.innerHTML = `
+                <div><input type="checkbox" class="projtask_checkbox" id="${proj.Recid}" data-id="${proj.Recid}"></div>
+                <div class="taskId" contenteditable="true">${proj.taskname}</div>
+            `;                                                       
+
+            row.addEventListener('click', (event) => {
+                if (event.target.classList.contains('taskId')) return;
+
+                const checkbox = row.querySelector('.projtask_checkbox');
+                if (checkbox) checkbox.checked = !checkbox.checked;
+            });
+
+            serprojtaskline(row)
+
+            mainRow.appendChild(row)
+        })    
+    })
 }

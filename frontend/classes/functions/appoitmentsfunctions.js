@@ -1,3 +1,5 @@
+import { getuserName } from "../utils/HDL_Utils.js"
+
 export function setAppointmentsFunctions(){
     document.querySelectorAll('.tab_btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -5,8 +7,12 @@ export function setAppointmentsFunctions(){
         document.querySelectorAll('.tab_content').forEach(tab => tab.classList.remove('active'));
     
         btn.classList.add('active');
-        const tabId = btn.dataset.tab;
-        document.getElementById(tabId).classList.add('active');
+            const tabId = btn.dataset.tab;
+
+            if(tabId == 'history_tab')
+                fillhistory();            
+
+            document.getElementById(tabId).classList.add('active');
         });
     });
 
@@ -37,23 +43,27 @@ export function setAppointmentsFunctions(){
         function updateTotalTime() {
             const start = startInput.value;
             const end   = endInput.value;
-        
+
             if (start && end && /^\d{2}:\d{2}$/.test(start) && /^\d{2}:\d{2}$/.test(end)) {
                 const [startH, startM] = start.split(":").map(Number);
                 const [endH, endM]     = end.split(":").map(Number);
-        
-                if (isNaN(startH) || isNaN(startM) || isNaN(endH) || isNaN(endM)) return;
-        
+                
+                const isValidTime = (h, m) => h >= 0 && h <= 23 && m >= 0 && m <= 59;
+                if (!isValidTime(startH, startM) || !isValidTime(endH, endM)) {
+                    totalDisplay.textContent = 'Hora inválida';
+                    return;
+                }
+
                 let totalMins = (endH * 60 + endM) - (startH * 60 + startM);
                 if (totalMins < 0) totalMins += 24 * 60;
-        
+
                 const hours = Math.floor(totalMins / 60);
                 const mins  = totalMins % 60;
                 totalDisplay.textContent = `${hours}h ${mins}m`;
             } else {
                 totalDisplay.textContent = '0:00';
             }
-        }        
+        }     
     
         function getCurrentTimeString() {
             const now = new Date();
@@ -79,8 +89,7 @@ export function setAppointmentsFunctions(){
         startInput.addEventListener('input', updateTotalTime);
         endInput.addEventListener('input', updateTotalTime);
     }
-    
-    
+        
     function dateFunction() {
         const input = document.getElementById("execution_date");
     
@@ -105,15 +114,32 @@ export function setAppointmentsFunctions(){
         });
     }
               
-
     fillUtils();
     timeFunction()
     dateFunction()
 }
 
-function fillhistory(){
+async function fillhistory() {
+    const mainRow = document.getElementById('main_history');
+    mainRow.innerHTML = "";
 
+    const response = await fetch('http://localhost:3000/find', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ tableid: 'records', query: { userid: window.currentUserData.user } })
+    });
+
+    const data = await response.json();
+    const json = data.json;
+
+    console.log(json);
+
+    const cards = await Promise.all(json.map(record => history_format(record)));
+    cards.forEach(card => mainRow.appendChild(card));
 }
+
 
 // Auxiliares
 function fillUtils(){
@@ -121,10 +147,10 @@ function fillUtils(){
     const task     = document.getElementById('task_input');
     const ticket   = document.getElementById('ticket_input');
 
-    function basicOption(ref_select){
+    function basicOption(ref_select,text = ""){
         const nullOption       = document.createElement('option');
         nullOption.value       = 'null';
-        nullOption.textContent = '';
+        nullOption.textContent = text;
         ref_select.appendChild(nullOption);
     }
 
@@ -135,13 +161,44 @@ function fillUtils(){
         ref_select.appendChild(newOption);
     }
 
-    projects.innerHTML = '';
-    task.innerHTML = '';
-    ticket.innerHTML = '';
+    function projfunctions(){
+        projects.addEventListener('change', () => {
+            task.innerHTML = ''
+            basicOption(task,'(obrigatorio)')
 
-    basicOption(projects)
-    basicOption(task)
-    basicOption(ticket)
+            if(projects.value == 'null')
+                task.disabled = true
+            else{
+                task.disabled = false                
+
+                fetch('http://localhost:3000/find', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },   
+                    body: JSON.stringify({tableid: 'projects_tasks', query: {projId: projects.value}})     
+                })    
+                .then(response => response.json())
+                .then(data => {
+                    const json = data.json 
+
+                    json.forEach(taskInfo => {
+                        newOption(task,taskInfo.taskname);
+                    });
+                })
+            }            
+        })
+    }
+
+    projects.innerHTML = '';    
+    ticket.innerHTML   = '';
+    task.innerHTML = ''
+
+    basicOption(task,'(obrigatorio)')
+    basicOption(projects)    
+    basicOption(ticket,'(obrigatorio)')
+
+    projfunctions()
 
     //tickets
     fetch('http://localhost:3000/find', {
@@ -150,13 +207,57 @@ function fillUtils(){
             'Content-Type': 'application/json'
         },   
         body: JSON.stringify({tableid: 'tickets'})     
-      })    
-      .then(response => response.json())
-      .then(data => {
+    })    
+    .then(response => response.json())
+    .then(data => {
         const json = data.json 
-    
+
         json.forEach(ticketInfo => {
-          newOption(ticket,ticketInfo.ticketId);
+            newOption(ticket,ticketInfo.ticketId);
         });
-      })
+    })
+
+    //projetos e tarefas
+    fetch('http://localhost:3000/find', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },   
+        body: JSON.stringify({tableid: 'projects'})     
+    })    
+    .then(response => response.json())
+    .then(data => {
+        const json = data.json 
+
+        json.forEach(projs => {
+            newOption(projects,projs.projId);
+        });
+    })
+}
+
+async function history_format(record) {
+    const icon_id   = '<i class="fa-regular fa-id-card"></i>';
+    const icon_task = '<i class="fa-regular fa-flag"></i>';
+    const icon_proj = '<i class="fa-solid fa-diagram-project"></i>';
+
+    const userName = await getuserName(record.userId);
+
+    const div = document.createElement('div');
+    div.className = 'entry_card';
+
+    div.innerHTML = `
+        <div class="entry_header">
+            <div style="display: flex; gap: 5px; align-items: center;">
+                ${icon_id}<strong>${userName}</strong>
+            </div>
+            <div class="entry_duration">${record.total}</div>
+        </div>
+        <div style="display: flex; gap: 5px; align-items: center;">
+            ${icon_proj}<p><strong>${record.projid}</strong></p>
+        </div>
+        <p>${icon_task} ${record.taskid} · <span>${record.contact}</span> · <span>#${record.ticketId}</span></p>
+        <p>${record.description}</p>
+    `;
+
+    return div;
 }

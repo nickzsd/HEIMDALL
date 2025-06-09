@@ -10,6 +10,10 @@ window.currentUserData = {
   user_description: 'teste de descrição'
 }
 
+window.projs = {
+  projName: ''
+}
+
 window.edituserdata = {
 }
 
@@ -29,12 +33,12 @@ const appointments_html = `
   <div class="tabs_container_AP">
     <button class="tab_btn active" data-tab="new_entry_tab">Novo Apontamento</button>
     <button class="tab_btn" data-tab="history_tab">Histórico</button>
-    <button class="tab_btn" data-tab="staff_history_tab">Histórico de Funcionários</button>
+    ${window.currentUserData.function != "gestor" ? "" : `<button class="tab_btn" data-tab="staff_history_tab">Histórico de Funcionários</button>`}    
   </div>
   
   <div class="tab_content active" id="new_entry_tab">
-    <div class="time_entry_grid">
-      <h2 class="main_title">Lançar Apontamento</h2>
+    <h2 class="main_title">Novo Apontamento</h2>
+    <div class="time_entry_grid">      
       <form id="time_entry_form">        
         <div class="info_fields">                                
           <label class='info_inputs' for="description">Descrição</label>
@@ -79,41 +83,20 @@ const appointments_html = `
       </form>
     </div>
   </div>
-
-  <!-- Aba: Histórico -->
+  
   <div class="tab_content" id="history_tab">
-    <div class="saved_entries_grid">
-      <h3 class="main_title">Registros Recentes</h3>
-
-      <div class="entry_card">
-        <div class="entry_header">
-          <strong>Fulano da Silva</strong>
-          <div class="entry_duration">2h 30m</div>
-        </div>
-        <p><strong>Projeto X</strong> (Cliente Y)</p>
-        <p>🛠 Desenvolvimento · <span>Contato Z</span> · <span>00099</span></p>
-        <p>Refatoração do módulo principal</p>        
-      </div>
-
-      <div class="entry_card">
-        <div class="entry_header">
-          <strong>Fulano da Silva</strong>
-          <div class="entry_duration">1h 15m</div>
-        </div>
-        <p><strong>Projeto Z</strong> (Cliente K)</p>
-        <p>🧰 Suporte · <span>Contato J</span> · <span>00042</span></p>
-        <p>Correção de bugs relatados</p>        
-      </div>
-    </div>
+    <h3 class="main_title">Registros Recentes</h3>
+    <div id="main_history" class="saved_entries_grid"></div>
   </div>
 
-  <!-- Aba: Histórico de Funcionários -->
-  <div class="tab_content" id="staff_history_tab">
-    <div class="saved_entries_grid">
-      <h3 class="main_title">Histórico de Funcionários</h3>
+  ${window.currentUserData.function != "gestor" ? "" :
+  `<div class="tab_content" id="staff_history_tab">
+    <h3 class="main_title">Histórico de Funcionários</h3>
+    <div class="saved_entries_grid">      
       <p>Em breve...</p>
     </div>
-  </div>
+  </div>`
+  }
 </section>
 `;
  
@@ -236,7 +219,7 @@ const config_html = `
       </div>
       <div class="tab_panel" id="projects">
         <h2 class="section_title">Parâmetros de Projetos</h2>
-        <div class="companys">
+        <div class="projects_tasks">
           <span class="sequence_title">Cadastro de projetos</span>
           <div class="action_pane_company">
             <button class="company_button" id="add_project">
@@ -248,13 +231,34 @@ const config_html = `
               <span>Remover projeto</span>
             </button>
           </div>
-          <div class="group_company">
-            <div class="Company_header">    
+          <div class="group_proj">
+            <div class="proj_header">    
               <div></div>          
               <div>projeto</div>
               <div>Empresa Referente</div>
             </div>
             <div id="project_rows" class="Company_rows"></div>
+          </div>
+          <div id='projtasks' class="projtask_div">
+            <span class="sequence_title">Cadastro de tarefas / </span>
+            <span id="proj_title" class="sequence_title">${window.projs.projName}</span>
+            <div class="action_pane_company">
+              <button class="company_button" id="add_task">
+                <i class="fa-solid fa-plug-circle-check"></i>
+                <span>Nova tarefa</span>
+              </button>
+              <button class="company_button" id="remove_task">
+                <i class="fa-solid fa-plug-circle-minus"></i>
+                <span>Remover tarefa</span>
+              </button>
+            </div>
+            <div class="group_proj_task">
+              <div class="proj_task_header">    
+                <div></div>                        
+                <div>tarefas</div>
+              </div>
+              <div id="task_rows" class="Company_rows"></div>
+            </div>
           </div>
         </div> 
       </div>
