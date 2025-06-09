@@ -76,6 +76,15 @@ export function today(){
     return `${day}/${month}/${year}`;
 }
 
+export function timeNow(){
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const actualTime = `${horas}:${minutos}`;
+
+    return actualTime;
+}
+
 //NECESSIDADES
 export function close_window(win) {
     const index = minimized_windows.indexOf(win);

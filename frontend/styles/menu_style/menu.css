@@ -210,6 +210,10 @@ body {
     z-index: 5;
 }
 
+.window_records{
+    min-width: 550px
+}
+
 .window_profile{
     max-height: 650px;
     max-width: 980px;

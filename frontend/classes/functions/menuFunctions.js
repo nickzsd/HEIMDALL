@@ -104,7 +104,7 @@ function renderMenu() {
     create_btn('Chamados/Tickets', 'fas fa-ticket-alt', 'tickets', ticketHTML,'TK');
     
     if (window.currentUserData.register_type == 'employee') {
-        create_btn('Apontamentos', 'fas fa-clipboard-list', 'records',apontamentos_html,'AP');
+        create_btn('Apontamentos', 'fa-solid fa-id-badge', 'records',appointments_html,'AP');
 
         if(window.currentUserData.function == 'gestor') {
             create_btn('Lista de Usuários', 'fas fa-table', 'user_list', user_list_html, 'US');

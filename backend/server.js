@@ -24,6 +24,12 @@ function getTableId(id){
         case 'company':
             tablePath = './data/company.xlsx';
             break;
+        case 'projects':
+            tablePath = './data/projects.xlsx';
+            break;
+        case 'projects_tasks':
+            tablePath = './data/projects_tasks.xlsx';
+            break;
 
         //cadatros
         case 'users':

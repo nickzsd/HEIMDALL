@@ -5,7 +5,7 @@ window.currentUserData = {
   email: 'Heindall@email.com.br',
   contact_phone: '(41)0000-0000',
   register_type: 'employee', //'company', //'employee'
-  function: "gestor",
+  function: "gestor", 
   companyId: '', //'empresa teste 1'
   user_description: 'teste de descrição'
 }
@@ -23,62 +23,100 @@ window.TKType = {
   TicketUser:'' 
 }
 
-const apontamentos_html = `
-<selection id="appointment_selections" class="appointment_selections"> 
-  <div class="time_entry_grid">
-      <h2 class = "main_title">Lançar Apontamento</h2>
-      <form id="time_entry_form">
-          <textarea id="description" placeholder="O que você está fazendo?"></textarea>
-          <input id="project_input" type="text" placeholder="Projeto (obrigatório)" required>
-          <input id="task_input" type="text" placeholder="Tarefa">
-          <input id="contact_input" type="text" placeholder="Contato (obrigatório)" required>
-          <input id="ticket_input" type="text" placeholder="Chamado (obrigatório)" required>
+const appointments_html = `
+<section id="appointment_selections" class="appointment_selections">
 
-          <div class="time_controls">
-          <div>
-              <label>Total</label>
+  <div class="tabs_container_AP">
+    <button class="tab_btn active" data-tab="new_entry_tab">Novo Apontamento</button>
+    <button class="tab_btn" data-tab="history_tab">Histórico</button>
+    <button class="tab_btn" data-tab="staff_history_tab">Histórico de Funcionários</button>
+  </div>
+  
+  <div class="tab_content active" id="new_entry_tab">
+    <div class="time_entry_grid">
+      <h2 class="main_title">Lançar Apontamento</h2>
+      <form id="time_entry_form">        
+        <div class="info_fields">                                
+          <label class='info_inputs' for="description">Descrição</label>
+          <textarea id="description" name="description" placeholder="O que você está fazendo?" rows="3" required></textarea>
+
+          <label class='info_inputs' for="project_input">Projeto <span class="required">*</span></label>
+          <select class='custom_select_v3' id="project_input" required></select>              
+
+          <label class='info_inputs' for="task_input">Tarefa</label>
+          <select class='custom_select_v3' id="task_input" disabled required></select>              
+          <div style="display: flex; gap: 10px">
+          <div style="flex: 1">
+            <label class='info_inputs' for="contact_input">Contato <span class="required">*</span></label>
+            <input class="input_AP" id="contact_input" name="contact" type="text" placeholder="Contato" required>
+          </div>
+          <div style="flex: 1">
+            <label class='info_inputs' for="ticket_input">Chamado/Ticket <span class="required">*</span></label>
+            <select class='custom_select_v3' id="ticket_input" required></select>             
+          </div>
+        </div>
+          <div class="time_controls">                        
+            <div>
+              <label class='info_inputs'>Total</label>
               <div id="total_time">0:00</div>
+            </div>
+            <div style="display: flex; gap: 10px">
+            <div>
+              <label class='info_inputs' for="start_time">Início</label>
+              <input class="time_AP" type="text" id="start_time" name="start_time" autocomplete='off' placeholder="HH:MM">
+            </div>
+            <div>
+              <label class='info_inputs' for="end_time">Fim</label>
+              <input class="time_AP" type="text" id="end_time" name="end_time" autocomplete='off' placeholder="HH:MM">
+            </div>            
           </div>
-          <div>
-              <label>Início</label>
-              <input type="time" id="start_time">
           </div>
-          <div>
-              <label>Fim</label>
-              <input type="time" id="end_time">
-          </div>
-          <input type="date" id="date_picker">
-          </div>
-
+        </div>                  
+        <div class="bottom_bar">
           <button type="button" id="start_timer_btn">ENVIAR</button>
+          <input class="date_AP"type="date"id="execution_date"name="execution_date"></input>
+        </div>
       </form>
+    </div>
   </div>
-  <div class="saved_entries_grid">
-      <h3 class = "main_title">Registros Recentes</h3>
-      <div class="entry_card">
-          <div class="entry_header">
-              <strong>Fulano da Silva</strong>
-              <div class="entry_duration">2h 30m</div>
-          </div>
-          <p><strong>Projeto X</strong> (Cliente Y)</p>
-          <p>🛠 Desenvolvimento · <span>Contato Z</span> · <span>00099</span></p>
-          <p>Refatoração do módulo principal</p>
-          <small>Criado há 10 minutos</small>
-      </div>
-      <div class="entry_card">
-          <div class="entry_header">
-              <strong>Fulano da Silva</strong>
-              <div class="entry_duration">1h 15m</div>
-          </div>
-          <p><strong>Projeto Z</strong> (Cliente K)</p>
-          <p>🧰 Suporte · <span>Contato J</span> · <span>00042</span></p>
-          <p>Correção de bugs relatados</p>
-          <small>Editado há 25 minutos</small>
-      </div>
-  </div>
-</selection>
-`;
 
+  <!-- Aba: Histórico -->
+  <div class="tab_content" id="history_tab">
+    <div class="saved_entries_grid">
+      <h3 class="main_title">Registros Recentes</h3>
+
+      <div class="entry_card">
+        <div class="entry_header">
+          <strong>Fulano da Silva</strong>
+          <div class="entry_duration">2h 30m</div>
+        </div>
+        <p><strong>Projeto X</strong> (Cliente Y)</p>
+        <p>🛠 Desenvolvimento · <span>Contato Z</span> · <span>00099</span></p>
+        <p>Refatoração do módulo principal</p>        
+      </div>
+
+      <div class="entry_card">
+        <div class="entry_header">
+          <strong>Fulano da Silva</strong>
+          <div class="entry_duration">1h 15m</div>
+        </div>
+        <p><strong>Projeto Z</strong> (Cliente K)</p>
+        <p>🧰 Suporte · <span>Contato J</span> · <span>00042</span></p>
+        <p>Correção de bugs relatados</p>        
+      </div>
+    </div>
+  </div>
+
+  <!-- Aba: Histórico de Funcionários -->
+  <div class="tab_content" id="staff_history_tab">
+    <div class="saved_entries_grid">
+      <h3 class="main_title">Histórico de Funcionários</h3>
+      <p>Em breve...</p>
+    </div>
+  </div>
+</section>
+`;
+ 
 const perfil_window_html = `
 <div class="form_container">
   <div class="left_column">
@@ -162,6 +200,10 @@ const config_html = `
         <i class="fa-solid fa-gears"></i>
         <span>Geral</span>
       </div>
+      <div class="tab_button" data-tab="projects">
+        <i class="fa-solid fa-diagram-project"></i>
+        <span>Projetos</span>
+      </div>
       <div class="tab_button" data-tab="Sequence">
         <i class="fa-solid fa-list-ol"></i>
         <span>Sequencias Numericas</span>
@@ -191,6 +233,30 @@ const config_html = `
             <div id="company_rows" class="Company_rows"></div>
           </div>
         </div>        
+      </div>
+      <div class="tab_panel" id="projects">
+        <h2 class="section_title">Parâmetros de Projetos</h2>
+        <div class="companys">
+          <span class="sequence_title">Cadastro de projetos</span>
+          <div class="action_pane_company">
+            <button class="company_button" id="add_project">
+              <i class="fa-solid fa-plug-circle-check"></i>
+              <span>Novo projeto</span>
+            </button>
+            <button class="company_button" id="remove_project">
+              <i class="fa-solid fa-plug-circle-minus"></i>
+              <span>Remover projeto</span>
+            </button>
+          </div>
+          <div class="group_company">
+            <div class="Company_header">    
+              <div></div>          
+              <div>projeto</div>
+              <div>Empresa Referente</div>
+            </div>
+            <div id="project_rows" class="Company_rows"></div>
+          </div>
+        </div> 
       </div>
       <div class="tab_panel" id="Sequence">
         <h2 class="section_title">Parâmetros de Sequencia Numerica</h2>

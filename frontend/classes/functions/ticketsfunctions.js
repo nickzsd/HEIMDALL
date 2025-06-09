@@ -82,8 +82,7 @@ export function setfunctions_TK(){
         else{
           warningModal('Foi enviado uma notificação para o gestor');
           newNotification('solicitação de alocação de serviço', 'gestor1',1,'tickets') //ADM principal
-        }
-        
+        }        
       })
     })
   }

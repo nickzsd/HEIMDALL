@@ -1,5 +1,7 @@
 import {confirmModal, warningModal} from '../messages/modalLOG.js'
 
+import { getnextRecid } from '../utils/HDL_Utils.js'
+
 export function canCloseWindow() {    
     return new Promise((resolve) => {
         const sequenceUser        = document.getElementById('usercode');
@@ -38,6 +40,7 @@ export function canCloseWindow() {
 export function FillConfigData(){
     fillSequences();
     fillCompanys();    
+    fillprojects();
 }
 
 export function setconfigfunctions(){  
@@ -163,7 +166,7 @@ export function setconfigfunctions(){
             row.id        = next_id
             row.className = 'Company_row';
             row.innerHTML = `
-                <div><input type="checkbox" class="company_checkbox" id="company_id_${next_id}" data-id="${next_id}"></div>
+                <div><input type="checkbox" class="company_checkbox" id="${next_id}" data-id="${next_id}"></div>
                 <div class="company_id" contenteditable="true"></div>
                 <select id="Contact_Select" class="custom_select_CP">
                     <option value="null">Não atribuido</option>
@@ -211,9 +214,7 @@ export function setconfigfunctions(){
             return;            
         } 
 
-        const companyids = idsSelecionados.join(','); 
-
-        console.log(companyids);
+        const companyids = idsSelecionados.join(',');         
 
         confirmModal(`Deseja realmente deletar?`).then((confirmed) => {
             if (confirmed) {                 
@@ -228,7 +229,99 @@ export function setconfigfunctions(){
                     if (data.success)
                         fillCompanys()                                                                    
                     else 
-                        warningModal('Erro ao adicionar no Excel!');                
+                        warningModal('Erro ao remover no Excel!');                
+                })
+                .catch(err => {
+                    console.error(err);
+                    warningModal('Erro de conexão com o servidor.');
+                });                                            
+            }
+        });
+    })
+
+    document.getElementById('add_project').addEventListener('click', async () => {  
+        const mainRow = document.getElementById('project_rows')
+        
+        const row = document.createElement('div');   
+        
+        const next_id = await getnextRecid('projects');                
+
+        fetch('http://localhost:3000/table_states', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },        
+            body: JSON.stringify({tableid: 'projects',
+                                type: 'insert',
+                                data: {Recid: next_id,projId:"",refCompany:""}})
+        })
+        .then(res => res.json())
+        .then(data => {}) 
+            row.id        = proj.Recid;         
+            row.className = 'project_row';
+            row.innerHTML = `
+                <div><input type="checkbox" class="proj_checkbox" id="${next_id}" data-id="${next_id}"></div>
+                <div class="projId" contenteditable="true"></div>
+                <select id="company_select" class="custom_select_PJ">
+                    <option value="null">Não atribuido</option>
+                </select>
+            `;        
+
+            const selection_field = row.querySelector('.custom_select_PJ')    
+
+            fetch('http://localhost:3000/find', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },   
+                body: JSON.stringify({tableid: 'company'})     
+            })    
+            .then(response => response.json())
+            .then(data => {
+                const json = data.json 
+    
+                json.forEach(company => {
+                    const option = document.createElement('option');
+                    option.value = company.companyId;
+                    option.textContent = company.companyId;                    
+
+                    selection_field.appendChild(option);
+                });
+            })
+
+            row.addEventListener('click', () => {
+                const checkbox = row.querySelector('.proj_checkbox');
+                if (checkbox) checkbox.checked = !checkbox.checked;
+            });
+
+            setprojline(row)
+
+            mainRow.appendChild(row)
+        })                                             
+
+    document.getElementById('remove_project').addEventListener('click', () => {
+        const checkboxes      = document.querySelectorAll('.proj_checkbox');
+        const idsSelecionados = Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.dataset.id);                 
+
+        if (idsSelecionados.length === 0) {
+            warningModal("Selecione ao menos um projeto para remover.");                            
+            return;            
+        } 
+
+        const projs_ids = idsSelecionados.join(',');         
+
+        confirmModal(`Deseja realmente deletar?`).then((confirmed) => {
+            if (confirmed) {                 
+                const JsonBodyData = {tableid: 'projects',type: 'delete',data:'',query: {Recid: parseInt(projs_ids)}}
+                fetch('http://localhost:3000/table_States', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(JsonBodyData)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success)
+                        fillprojects()                                                       
+                    else 
+                        warningModal('Erro ao remover no Excel!');                
                 })
                 .catch(err => {
                     console.error(err);
@@ -271,6 +364,38 @@ function setLineUpdate(row){
 
 }
 
+function setprojline(row){
+    const projIdDiv     = row.querySelector('.projId');
+    const select_Company = row.querySelector('.custom_select_PJ');     
+
+    function makeupdate(refid,name,selectValue){
+        const JsonBodyData = {tableid: 'projects',
+                            type: 'update',
+                            query:{Recid: refid},
+                            data: {Recid: refid,projId: name,refCompany: selectValue}}        
+        
+        fetch('http://localhost:3000/table_states', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },        
+            body: JSON.stringify(JsonBodyData)
+        })
+        .then(res => res.json())
+        .then(data => {})
+    }    
+    
+    projIdDiv.addEventListener('input', () => {
+        clearTimeout(row._debounceTimer);
+        row._debounceTimer = setTimeout(() => {  
+            makeupdate(Number(row.id),projIdDiv.textContent,select_Company.value)        
+        }, 600);
+    });   
+    
+    select_Company.addEventListener('change', () => {  
+        makeupdate(Number(row.id),projIdDiv.textContent,select_Company.value)
+    });
+}
+
+//preenchimento
 function fillSequences(){
     //sequencias numericas
     fetch('http://localhost:3000/find', {
@@ -363,7 +488,7 @@ function fillCompanys(){
             })
 
             row.addEventListener('click', () => {
-                const checkbox = row.querySelector('.user_checkbox');
+                const checkbox = row.querySelector('.company_checkbox');
                 if (checkbox) checkbox.checked = !checkbox.checked;
             });
 
@@ -372,4 +497,73 @@ function fillCompanys(){
             mainRow.appendChild(row)
         })    
     })
+}
+
+function fillprojects(){    
+    //projetos
+    fetch('http://localhost:3000/find', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },   
+        body: JSON.stringify({tableid: 'projects'})
+      })    
+    .then(response => response.json())
+    .then(data => {
+        const json = data.json         
+
+        const mainRow = document.getElementById('project_rows')
+        mainRow.innerHTML = "";
+        
+        json.forEach(proj => {                        
+            const row = document.createElement('div');   
+            row.id        = proj.Recid;         
+            row.className = 'project_row';
+            row.innerHTML = `
+                <div><input type="checkbox" class="proj_checkbox" id="${proj.Recid}" data-id="${proj.Recid}"></div>
+                <div class="projId" contenteditable="true">${proj.projId }</div>
+                <select id="company_select" class="custom_select_PJ">
+                    <option value="null">Não atribuido</option>
+                </select>
+            `;                                           
+
+            const selection_field = row.querySelector('.custom_select_PJ')    
+
+            fetch('http://localhost:3000/find', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },   
+                body: JSON.stringify({tableid: 'company'})     
+            })    
+            .then(response => response.json())
+            .then(data => {
+                const json = data.json 
+    
+                json.forEach(company => {
+                    const option = document.createElement('option');
+                    option.value = company.companyId;
+                    option.textContent = company.companyId;
+
+                    if (proj.refCompany === company.companyId) 
+                        option.selected = true;
+
+                    selection_field.appendChild(option);
+                });
+            })
+
+            row.addEventListener('click', () => {
+                const checkbox = row.querySelector('.proj_checkbox');
+                if (checkbox) checkbox.checked = !checkbox.checked;
+            });
+
+            setprojline(row)
+
+            mainRow.appendChild(row)
+        })    
+    })
+}
+
+function fillprojects_tasks(){
+    
 }
