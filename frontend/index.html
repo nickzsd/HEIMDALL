@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>HEIMDALL</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" href="styles/reset.css">   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="icons/Heindall/heindall_gold.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel = "stylesheet" href = "styles/general_style/colors.css" type = "text/css" media = "screen"/>          
@@ -75,7 +79,7 @@
                 <div class="product_modal">
                     <div class="product_modal_content">
                         <span class="close_modal">&times;</span>
-                        <h2 class="BT">BIFROST</h2>
+                        <a target = "_blank" href="https://bifrostxplat.pages.dev/"><h2 class="BT modal_title">BIFROST</h2></a>
                         <p class="modal_text">Bifrost é uma poderosa plataforma de monitoramento de servidores, desenvolvida para oferecer total visibilidade sobre o desempenho da sua infraestrutura. Com monitoramento em tempo real de CPU, memória RAM e discos, o Bifrost antecipa falhas e gargalos antes que eles afetem seu negócio.
                             Além disso, conta com uma interface gráfica intuitiva que facilita o gerenciamento de erros, contêineres Docker e processos, transformando dados brutos em insights acionáveis.
                         </p>
@@ -88,7 +92,7 @@
             </div>
             <div class="product_card portal_heimdall heimdall">
                 <div class="container_t hover_scale">
-                    <h2 class="product_title PH">PORTAL HEINDALL</h2>                
+                    <h2 class="product_title PH">PORTAL HEIMDALL</h2>                
                 </div>            
                 <div class="product_logo">
                     <img class="product_img" src="icons/Heindall/heindall_gold.png" alt="Logo Portal Heindall">
@@ -145,7 +149,7 @@
                     <div>
                         <h3>SOLUÇÃO DE PRODUTOS:</h3>
                         <ul>
-                            <li>Bifrost</li>
+                            <a><li>Bifrost</li></a>
                             <li>Portal Heimdall</li>
                         </ul>
                     </div>
@@ -154,7 +158,7 @@
             <div class="service_box">
                 <span class="line"></span>
                 <p>
-                Na <strong>Heindall</strong>, Seguimos<br>
+                Na <strong>Heimdall</strong>, Seguimos<br>
                 que com tecnologia e ambição<br>
                 pode-se levar empresas ao sucesso.
                 </p>
@@ -170,18 +174,18 @@
 </section>
 
 <div class="product_modal" id="contactModal">
-    <div class="product_modal_content portal_heimdall">
+    <div class="product_modal_content modal_contact_container">
         <span class="close_modal" id="closeContactModal">&times;</span>
         <h2 class="PH">Fale Conosco</h2>
         <p class="modal_text">
             Para contatar o melhor suporte a usa empresa.
         </p>
-        <a href="" target="_blank" class="whatsapp_btn">FALAR PELO WHATSAPP</a>
+        <a href="" target="_blank" class="whatsapp_btn">FALAR PELO WHATSAPP<i class="fa-brands fa-whatsapp"></i></a>
         <div class="social_section">
             <h3>Redes sociais</h3>
             <div class="icons">
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-linkedin"></i>
+                <i class="fa-brands fa-instagram form_icons"></i>
+                <i class="fa-brands fa-linkedin form_icons"></i>
             </div>
         </div>
         <form class="contact_form">
@@ -202,18 +206,12 @@
 
 <section id="footer_info">
     <footer class="footer_wrapper">
-        <div class="footer_container">
-            <div class="footer_column">
-                <p class="footer_description">
+        <span class="footer_textWrapper">
+            <p class="footer_description">
                 Somos uma empresa de suporte em constante crescimento e inovação sempre buscando o melhor para você e seu negocio.
-                </p>
-                <div class="footer_socials">
-                    <i class="fab fa-facebook"></i>
-                    <i class="fab fa-instagram"></i>
-                    <i class="fab fa-linkedin"></i>
-                    <i class="fab fa-youtube"></i>
-                </div>
-            </div>
+            </p>
+        </span>
+        <div class="footer_container">
             <div class="footer_column">
                 <h4 class="footer_title">Quem Somos</h4>
                 <ul class="footer_links">
@@ -224,8 +222,8 @@
             <div class="footer_column">
                 <h4 class="footer_title">Produtos</h4>
                 <ul class="footer_links">
-                <li><a href="html/login.html">Portal Heimdall</a></li>
-                <li><a>Bifrost</a></li>
+                <li><a target="_blank" href="html/login.html">Portal Heimdall</a></li>
+                <li><a target="_blank" href="https://bifrostxplat.pages.dev/">Bifrost</a></li>
                 </ul>
             </div>
             <div class="footer_column">
@@ -244,11 +242,20 @@
                 </ul>
             </div>
         </div>
-        <div class="footer_bottom">
-            <p>Copyright © 2025</p>
-            <p>heimdall Technology LTDA- CNPJ: 00.000.000/0000-00</p>
-            <p>rua, 000, Curitiba/PR - Brasil</p>
-            <p>contato@heimdall.com</p>
+        <div class="footer_column footer_opener">
+            <div class="footer_socials">
+                <p class="footer_call">Conheça nossas redes sociais:</p>
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-linkedin"></i>
+                <i class="fab fa-youtube"></i>
+            </div>
+            <div class="footer_bottom">
+                <p>Copyright © 2025</p>
+                <p>heimdall Technology LTDA- CNPJ: 00.000.000/0000-00</p>
+                <p>rua, 000, Curitiba/PR - Brasil</p>
+                <p>contato@heimdall.com</p>
+            </div>
         </div>
     </footer>
 </section>

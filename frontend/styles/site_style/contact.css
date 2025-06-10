@@ -28,6 +28,10 @@
     height: 24px;
 }
 
+.form_icons {
+    padding-top: 5px;
+}
+
 .contact_form {
     display: flex;
     flex-direction: column;
@@ -42,7 +46,6 @@
     border-radius: 8px;
     background-color: white;
     font-size: 14px;
-    width: 100%;
 }
 
 .contact_info {
@@ -57,11 +60,10 @@
     width: 40%;
     height: 2.5em;
     transition: 0.6s;
-
-    border: 2px solid var(--heindall_maincolor);
-    background-color: var(--background);
+    border: 2px solid var(--background);
+    background-color: var(--subbackground);
 }
 
 .modal_contact_btn:hover{
-    background-color: var(--heindall_maincolor);
+    background-color: var(--background);
 }

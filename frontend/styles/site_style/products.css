@@ -43,11 +43,20 @@
     font-weight: bold;
 }
 
-.BT{     
+.modal_title {
+    color: rgb(218, 185, 0);
+    margin-bottom: 10px;
+}
+
+.BT{
     display: inline-block;
     transition: all 1s ease;    
     border-bottom: 2px solid var(--bifrost_cleancolor);
     position: relative;  
+}
+
+.modal_text {
+    margin-bottom: 15px;
 }
 
 .PH{

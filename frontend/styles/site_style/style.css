@@ -2,10 +2,9 @@ html {
     scroll-behavior: smooth;
 }
 
-
 body {
+    font-family: "Roboto Slab", sans-serif;
     margin: 0; 
-    font-family: Arial, sans-serif; 
     scrollbar-width: none;    
     -ms-overflow-style: none; 
 }
