@@ -7,17 +7,6 @@ html {
     color: white;
 }
 
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-}
-
-::-webkit-scrollbar {
-    display: none;     
-}
-
 img {
 	pointer-events: none;
 	-webkit-user-drag: none;
@@ -29,6 +18,17 @@ body {
 	color: #fff;
 	padding: 20px;
 	margin: 0;
+}
+
+::-webkit-scrollbar {
+    display: none;     
+}
+
+#background_canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
 
 .company_logo_container {
@@ -212,6 +212,11 @@ body {
 
 .window_records{
     min-width: 550px
+}
+
+.window_dashboard{
+    min-width: 300px;
+    max-width: 500px;
 }
 
 .window_profile{

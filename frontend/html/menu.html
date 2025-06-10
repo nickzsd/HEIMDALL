@@ -4,20 +4,23 @@
     <meta charset="UTF-8">
     <title>Portal Heimdall</title>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="icon" type="image/png" href="../icons/Heindall/heindall_gold.png">    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <script src="../classes/global/vars.js"></script>
 
     <link rel="stylesheet" href="../styles/menu_style/appoitments.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../styles/menu_style/dashboard.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="../styles/menu_style/userlist.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="../styles/menu_style/profile.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="../styles/menu_style/tickets.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="../styles/menu_style/config.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="../styles/menu_style/menu.css" type="text/css" media="screen" />
 
-    <script type="module" src="../classes/functions/notificationsfunctions.js"></script>
-    <script type="module" src="../classes/functions/appoitmentsfunctions.js"></script>
+    <script type="module" src="../classes/functions/notificationsfunctions.js"></script>    
+    <script type="module" src="../classes/functions/appoitmentsfunctions.js"></script>  
+    <script type="module" src="../classes/functions/dashboardfunctions.js"></script>  
     <script type="module" src="../classes/functions/userlistfunctions.js"></script>
     <script type="module" src="../classes/functions/ticketsfunctions.js"></script>
     <script type="module" src="../classes/functions/configfunctions.js"></script>    
@@ -25,7 +28,7 @@
     <script type="module" src="../classes/functions/menuscreen.js"></script>
     <script type="module" src="../classes/messages/modalLOG.js"></script>    
 </head>
-<body>
+<body>    
     <canvas id="background_canvas"></canvas>    
     <div id="menu_toggle">
         <i class="fas fa-bars"></i>

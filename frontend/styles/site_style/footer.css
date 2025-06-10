@@ -1,7 +1,11 @@
 .footer_wrapper {
     background-color: var(--subbackground);
     color: rgb(0, 0, 0);
+<<<<<<< Updated upstream
     padding: 40px 0px 20px 0px;
+=======
+    padding: 30px 20px;    
+>>>>>>> Stashed changes
 }
 
 .footer_container {

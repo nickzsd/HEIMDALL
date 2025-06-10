@@ -10,6 +10,12 @@ window.currentUserData = {
   user_description: 'teste de descrição'
 }
 
+window.appointment = {
+  ap_type: 0,
+  admin_view: 0,
+  workerid: ''
+}
+
 window.projs = {
   projName: ''
 }
@@ -27,17 +33,72 @@ window.TKType = {
   TicketUser:'' 
 }
 
+const dashboard_html = `
+<div class="dashboard_container">
+  <h2 class="main_title">Dashboard de Projetos</h2>
+
+  <div class="dashboard_top">
+    <div class="dashboard_filters">
+      <label for="period_filter">Período:</label>
+      <select id="period_filter" class="custom_select_v3">
+        <option value="7">Últimos 7 dias</option>
+        <option value="30">Últimos 30 dias</option>
+        <option value="90">Últimos 90 dias</option>
+        <option value="all">Todos</option>
+      </select>
+    </div>
+    <div class="dashboard_summary">
+      <div class="dashboard_card stat_card">
+        <i class="fas fa-tasks icon_gold"></i>
+        <div>
+          <div class="card_value" id="open_tickets">0 <span class="percent"></span></div>
+          <div class="variation" id="open_tickets_variation"></div>
+          <div class="card_label">Tickets Abertos</div>
+        </div>
+      </div>
+      <div class="dashboard_card stat_card">
+        <i class="fas fa-check-circle icon_gold"></i>
+        <div>
+          <div class="card_value" id="closed_tickets">0 <span class="percent"></span></div>
+          <div class="variation" id="closed_tickets_variation"></div>
+          <div class="card_label">Concluídos</div>
+        </div>
+      </div>
+      <div class="dashboard_card stat_card">
+        <i class="fas fa-clock icon_gold"></i>
+        <div>
+          <div class="card_value" id="total_hours">0h <span class="percent"></span></div>
+          <div class="variation" id="total_hours_variation"></div>
+          <div class="card_label">Horas</div>
+        </div>
+      </div>
+    </div>    
+  </div>
+
+  <div class="dashboard_charts_column">
+    <div class="dashboard_chart_section">
+      <h3 class="chart_title">Distribuição de Tickets</h3>
+      <canvas id="tickets_chart"></canvas>
+    </div>
+    <div class="dashboard_chart_section">
+      <h3 class="chart_title">Horas por Projeto</h3>
+      <canvas id="hours_chart"></canvas>
+    </div>
+  </div>
+</div>
+`;
+
 const appointments_html = `
 <section id="appointment_selections" class="appointment_selections">
 
   <div class="tabs_container_AP">
-    <button class="tab_btn active" data-tab="new_entry_tab">Novo Apontamento</button>
-    <button class="tab_btn" data-tab="history_tab">Histórico</button>
-    ${window.currentUserData.function != "gestor" ? "" : `<button class="tab_btn" data-tab="staff_history_tab">Histórico de Funcionários</button>`}    
+    <button id='new_ap_tab' class="tab_btn active" data-tab="new_entry_tab">Novo Apontamento</button>
+    <button id='ap_history' class="tab_btn" data-tab="history_tab">Histórico</button>
+    ${window.currentUserData.function != "gestor" ? "" : `<button id="worker_ap_tab" class="tab_btn" data-tab="staff_history_tab">Histórico de Funcionários</button>`}    
   </div>
   
   <div class="tab_content active" id="new_entry_tab">
-    <h2 class="main_title">Novo Apontamento</h2>
+    <h2 id="ap_title" class="main_title">Novo Apontamento</h2>    
     <div class="time_entry_grid">      
       <form id="time_entry_form">        
         <div class="info_fields">                                
@@ -52,7 +113,7 @@ const appointments_html = `
           <div style="display: flex; gap: 10px">
           <div style="flex: 1">
             <label class='info_inputs' for="contact_input">Contato <span class="required">*</span></label>
-            <input class="input_AP" id="contact_input" name="contact" type="text" placeholder="Contato" required>
+            <input class="input_AP" id="contact_input" name="contact" type="text" placeholder="Contato" autocomplete="off" required>
           </div>
           <div style="flex: 1">
             <label class='info_inputs' for="ticket_input">Chamado/Ticket <span class="required">*</span></label>
@@ -77,7 +138,7 @@ const appointments_html = `
           </div>
         </div>                  
         <div class="bottom_bar">
-          <button type="button" id="start_timer_btn">ENVIAR</button>
+          <button type="button" id="save_record">Salvar</button>
           <input class="date_AP"type="date"id="execution_date"name="execution_date"></input>
         </div>
       </form>
@@ -85,16 +146,20 @@ const appointments_html = `
   </div>
   
   <div class="tab_content" id="history_tab">
-    <h3 class="main_title">Registros Recentes</h3>
+    <h3 id="history_title" class="main_title">Registros Recentes</h3>
+    <div class="filter_history">
+      <h3>Filtros</h3>
+      <div>
+        <input class="date_AP_filter" type="date" id="filter_date" name="execution_date"></input>
+      </div>
+    </div>
     <div id="main_history" class="saved_entries_grid"></div>
   </div>
 
   ${window.currentUserData.function != "gestor" ? "" :
   `<div class="tab_content" id="staff_history_tab">
-    <h3 class="main_title">Histórico de Funcionários</h3>
-    <div class="saved_entries_grid">      
-      <p>Em breve...</p>
-    </div>
+    <h3 class="main_title">Histórico de Funcionários</h3>     
+    <div id="workers_history" class="saved_entries_grid"></div>    
   </div>`
   }
 </section>
@@ -312,7 +377,7 @@ const notification_html = `
     
   </div>
 </div>
-`
+`;
 
 // Tickets
 const newTicket_html = `
@@ -367,7 +432,7 @@ const newTicket_html = `
     </div>
   </div>  
 </div>
-`
+`;
 
 const ticketHTML = `
 <div id="AP_TK" class="action_pane_tickets">
@@ -450,7 +515,7 @@ const ticketHTML = `
   </div>
   <div id="ticket_list" class="ticket_list_container"></div>
 </div>
-`
+`;
 
 const TicketsDetais_html = `
 <div id="AP_TK" class="action_pane_tickets">
@@ -486,4 +551,4 @@ const TicketsDetais_html = `
     </div>
   </div>
 </div>
-`
+`;

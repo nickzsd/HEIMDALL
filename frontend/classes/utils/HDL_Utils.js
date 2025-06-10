@@ -1,5 +1,5 @@
 import { fillTickets, canCloseNewTicket, setFunctionsTK_Details } from "../functions/ticketsfunctions.js";
-import {confirmModal, warningModal} from '../messages/modalLOG.js'
+import { confirmModal, warningModal} from '../messages/modalLOG.js'
 import { canCloseWindow } from "../functions/configfunctions.js";
 import { setfunctions } from "../functions/userlistfunctions.js";
 import { setProfileFunctions } from "../functions/profileFunctions.js";
@@ -21,6 +21,26 @@ export async function getuserName(_UserName) {
     const data = await response.json();    
     
     const name = data.json[0] != null ? data.json[0].user_name : '--';
+    
+    return name;
+}
+
+export async function getprojName(projid) {
+    const response = await fetch('http://localhost:3000/find', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },   
+        body: JSON.stringify({tableid: 'projects',query: {projId: projid}})     
+      })        
+    const data = await response.json();    
+    
+    let name;
+
+    if(data.json[0] != null)
+        name = `${data.json[0].projId} (${data.json[0].refCompany})`
+    else
+        name = '--';
     
     return name;
 }
@@ -83,6 +103,45 @@ export function timeNow(){
     const actualTime = `${horas}:${minutos}`;
 
     return actualTime;
+}
+
+export function dateName(dateStr) {    
+    let date;
+    if (typeof dateStr === 'string') {
+        const [dia, mes, ano] = dateStr.split('/');
+        date = new Date(`${ano}-${mes}-${dia}T00:00:00`);
+    } else {
+        date = dateStr;
+    }
+
+    const meses = [
+        'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
+        'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
+    ];
+
+    const diasSemana = [
+        'domingo', 'segunda-feira', 'terça-feira', 'quarta-feira',
+        'quinta-feira', 'sexta-feira', 'sábado'
+    ];
+
+    const dia = date.getDate();
+    const mes = meses[date.getMonth()];
+    const ano = date.getFullYear();
+    const diaSemana = diasSemana[date.getDay()];
+
+    return `${dia} de ${mes} de ${ano} (${diaSemana})`;
+}
+
+export function Date2ISO(dateStr) {      
+    if(dateStr == null || dateStr == undefined) return null    
+
+    const [day, month, year] = dateStr.split('/');
+    return `${year}-${month}-${day}`;
+}
+
+export function ISO2Date(dateStr) {
+    const [year, month, day] = dateStr.split("-");
+    return `${day}/${month}/${year}`;
 }
 
 //NECESSIDADES

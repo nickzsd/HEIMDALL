@@ -13,6 +13,17 @@ function excelDateToJSDate(serial) {
     return date;
 }
 
+function excelTimeToJSTime(serial) {
+    const totalSeconds = Math.round(serial * 24 * 60 * 60);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+
+    const hh = String(hours).padStart(2, '0');
+    const mm = String(minutes).padStart(2, '0');
+
+    return `${hh}:${mm}`;
+}
+
 function getTableId(id){
     let tablePath;
     switch(id)
@@ -194,6 +205,15 @@ app.post('/find', async (req,res) => {
             
             if (typeof(record.refdate) == Number || typeof(record.refdate) == 'number')
                 record.refdate = (new Date(excelDateToJSDate(record.refdate))).toLocaleDateString('pt-BR');
+
+            if (typeof(record.initTime) == Number || typeof(record.initTime) == 'number')
+                record.initTime = excelTimeToJSTime(record.initTime)
+
+            if (typeof(record.endTime) == Number || typeof(record.endTime) == 'number')
+                record.endTime = excelTimeToJSTime(record.endTime)
+
+            if (typeof(record.total) == Number || typeof(record.total) == 'number')
+                record.total = excelTimeToJSTime(record.total)
 
             return record;
         })

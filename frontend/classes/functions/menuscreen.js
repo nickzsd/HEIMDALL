@@ -4,6 +4,7 @@ import { fillusernotifications, clearNotifications } from "./notificationsfuncti
 import { setfunctions_TK,fillTickets_Filters,fillTickets } from './ticketsfunctions.js';
 import { FillConfigData, setconfigfunctions } from "./configfunctions.js";
 import { setAppointmentsFunctions } from "./appoitmentsfunctions.js"
+import { basicDashboard } from "./dashboardfunctions.js"
 import { fillProfile } from "./profileFunctions.js";
 import { FillUS } from "./userlistfunctions.js";
 
@@ -62,6 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     setfunctions_TK();
                     fillTickets_Filters();    
                     fillTickets();                
+                    break;
+                case 'DB':                                                            
+                    basicDashboard();
                     break;
             }
         }

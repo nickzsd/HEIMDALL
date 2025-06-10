@@ -97,8 +97,8 @@ function renderMenu() {
 
     create_btn('Notificações/Notification', "fa-solid fa-bell", 'Notification', notification_html,'NF');
 
-    if (window.currentUserData.function == 'gestor' || window.currentUserData.register_type == 'cliente')        
-        create_btn('Dashboard', 'fa-solid fa-chart-pie', 'dashboard', "dashboard",'DB');
+    if (window.currentUserData.function == 'gestor' || window.currentUserData.register_type == 'employee')        
+        create_btn('Dashboard', 'fa-solid fa-chart-pie', 'dashboard', dashboard_html,'DB');
 
     create_btn('Perfil/Profile', 'fas fa-user', 'profile', perfil_window_html,'PF');
     create_btn('Chamados/Tickets', 'fas fa-ticket-alt', 'tickets', ticketHTML,'TK');
