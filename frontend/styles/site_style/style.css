@@ -106,7 +106,7 @@ header {
     top: 65px;
     width: 100%;
     z-index: 9999;
-    background-color: var(--heindall_cleancolor); 
+    background-color: var(--subbackground); 
     display: none;
     padding: 20px;
     border-top: 2px solid var(--heindall_maincolor);
@@ -129,9 +129,10 @@ header {
 }
 
 .menu_link {
-    display: inline-block;
+    text-align: center;
+    display: block;
     text-decoration: none;
-    color: #000;
+    color: white;
     font-size: 16px;
     transition: transform 0.3s ease, color 0.3s ease;
     position: relative;
@@ -150,6 +151,7 @@ header {
 
 .menu_link:hover {
     transform: scale(1.05);
+    cursor: pointer;
 }
 
 .menu_link:hover::after {
