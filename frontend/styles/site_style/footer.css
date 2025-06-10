@@ -1,15 +1,7 @@
 .footer_wrapper {
     background-color: var(--subbackground);
     color: rgb(0, 0, 0);
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    padding: 40px 0px 20px 0px;
-=======
-    padding: 30px 20px;    
->>>>>>> Stashed changes
-=======
-    padding: 30px 20px;    
->>>>>>> Stashed changes
+    padding-top: 3rem;
 }
 
 .footer_container {
@@ -24,7 +16,7 @@
     align-items: center;
     display: flex;
     justify-content: space-around;
-    margin-bottom: 3rem;
+    padding-bottom: 3rem;
 }
 
 .footer_column {

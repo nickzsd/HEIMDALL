@@ -61,7 +61,7 @@ header {
 
 .carousel {
     background-image: url('/icons/background/peixe.jpeg');  
-    margin-top: 65px;
+    margin-top: 49px;
     position: relative;
     overflow: hidden;        
     touch-action: pan-y;
