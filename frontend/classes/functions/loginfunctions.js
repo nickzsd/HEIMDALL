@@ -38,6 +38,18 @@ function switchUser() {
     }, 300);
 }
 
+function filluser(user){    
+    window.currentUserData.user             = user.user;
+    window.currentUserData.user_name        = user.user_name;
+    window.currentUserData.acess_key        = user.acess_key;
+    window.currentUserData.email            = user.email            || null
+    window.currentUserData.contact_phone    = user.contact_phone    || null
+    window.currentUserData.register_type    = user.register_type
+    window.currentUserData.function         = user.function         || null
+    window.currentUserData.companyId        = user.companyId        || null
+    window.currentUserData.user_description = user.user_description || null
+}
+
 function login() {
     const email = document.getElementById("email").value.trim();
     const senha = document.getElementById("senha").value.trim();
@@ -63,9 +75,9 @@ function login() {
     })
     .then(response => response.json())
     .then(data => {        
-        if (data.success) {
-            window.location.replace('../html/menu.html');
-            window.currentUserData = data.infolog;
+        if (data.success) {                      
+            filluser(data.user);                                                            
+            window.location.replace('../html/menu.html');                        
         } else {
             errorMsg.textContent   = data.infolog;;
             errorMsg.style.display = "block";

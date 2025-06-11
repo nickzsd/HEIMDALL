@@ -254,7 +254,7 @@ app.post('/get_existlogin', async (req,res) => {
     
     const login    = reqData.email, 
           password = reqData.senha, 
-          type     = reqData.currentUser;
+          type     = reqData.currentUser == "cliente" ? 'company' : 'employee';
 
     const workbook = XLSX.readFile('./data/register.xlsx');
     const sheetName = workbook.SheetNames[0];
@@ -270,12 +270,12 @@ app.post('/get_existlogin', async (req,res) => {
     if (!refuser || refuser.register_type != type) {
         const logInfo = (type + " não localizado.");        
         res.json({success: false, infolog: logInfo});             
-    }            
+    }                
 
-    if (refuser.acess_key.toString().trim() === password.toString().trim())           
-        res.json({success: true, infolog: refuser});     
+    if (refuser.acess_key.toString().trim() === password.toString().trim())                  
+        res.json({success: true, user: refuser});     
     else
-        res.json({success: true, infolog: "Senha incorreta."});    
+        res.json({success: false, infolog: "Senha incorreta."});    
 });
 
 app.post('/table_States', async (req, res) => {

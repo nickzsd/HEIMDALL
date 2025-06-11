@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <title>Portal Heimdall</title>
-    <link rel="icon" type="image/png" href="./icons/Heindall/heindall_gold.png">
+    <title>Portal Heimdall</title>    
+    <link rel="icon" type="image/png" href="../icons/Heindall/heindall_gold.png">
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <link rel = "stylesheet" href = "../styles/login_style/loginscreen.css" type = "text/css" media = "screen"/> 
-    <script type="module" src="../classes/functions/loginfunctions.js"></script>    
+    <script type="module" src="../classes/functions/loginfunctions.js"></script>   
+    
+    <script src="../classes/global/vars.js"></script>
 </head>
 <body>
     <canvas id="backgroundCanvas"></canvas>
@@ -24,9 +26,9 @@
             </div>
         </div>
 
-        <input type="text" placeholder="user/email" id="email">
+        <input type="text" placeholder="user/email" id="email" autocomplete="off">
         <div class="senha_container">
-            <input type="password" placeholder="senha" id="senha">
+            <input type="password" placeholder="senha" id="senha" autocomplete="off">
             <canvas id="eyeCanvas" width="40" height="40"></canvas>
         </div>
 

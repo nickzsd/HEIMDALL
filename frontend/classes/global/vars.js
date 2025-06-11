@@ -1,13 +1,13 @@
 window.currentUserData = {
-  user: 'gestor1',
-  user_name: 'gerente 1',
-  acess_key: 12345,
-  email: 'Heindall@email.com.br',
-  contact_phone: '(41)0000-0000',
+  user: 'gestor1',//'gestor1',
+  user_name: 'gerente 1',//'gerente 1',
+  acess_key: 12345,//null,//12345
+  email: 'Heindall@email.com.br',//'Heindall@email.com.br'
+  contact_phone: '(41)0000-0000',//'(41)0000-0000'
   register_type: 'employee', //'company', //'employee'
-  function: "gestor", 
-  companyId: '', //'empresa teste 1'
-  user_description: 'teste de descrição'
+  function: 'gestor', //'gestor'
+  companyId: 'empresa teste 1', //'empresa teste 1'
+  user_description: ''//
 }
 
 window.appointment = {
